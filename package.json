@@ -27,6 +27,7 @@
   "description": "Application for Noroff Auction website",
   "main": "main.js",
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "esbuild": "^0.15.14",
     "esbuild-windows-64": "^0.15.14",
     "function-bind": "^1.1.1",
