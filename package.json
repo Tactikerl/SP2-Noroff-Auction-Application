@@ -1,7 +1,7 @@
 {
   "name": "sp2-naa",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,5 +10,37 @@
   },
   "devDependencies": {
     "vite": "^3.1.0"
-  }
+  },
+  "description": "Application for Noroff Auction website",
+  "main": "main.js",
+  "dependencies": {
+    "esbuild-windows-64": "^0.15.14",
+    "esbuild": "^0.15.14",
+    "is-core-module": "^2.11.0",
+    "function-bind": "^1.1.1",
+    "nanoid": "^3.3.4",
+    "has": "^1.0.3",
+    "picocolors": "^1.0.0",
+    "path-parse": "^1.0.7",
+    "postcss": "^8.4.19",
+    "resolve": "^1.22.1",
+    "rollup": "^2.79.1",
+    "supports-preserve-symlinks-flag": "^1.0.0",
+    "source-map-js": "^1.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tactikerl/SP2-Noroff-Auction-Application.git"
+  },
+  "keywords": [
+    "sp2",
+    "e-commerce",
+    "website"
+  ],
+  "author": "Karl-M Kvammen <karlmkvammen@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tactikerl/SP2-Noroff-Auction-Application/issues"
+  },
+  "homepage": "https://github.com/Tactikerl/SP2-Noroff-Auction-Application#readme"
 }
