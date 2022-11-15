@@ -9,10 +9,13 @@
     "preview": "vite preview",
     "format": "prettier -w **/*.js",
     "lint": "eslint **/*.js",
-    "lint-fix": "eslint **/*.js --cache --fix"
+    "lint-fix": "eslint **/*.js --cache --fix",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "eslint": "^8.27.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "vite": "^3.1.0"
   },
@@ -47,5 +50,17 @@
   "bugs": {
     "url": "https://github.com/Tactikerl/SP2-Noroff-Auction-Application/issues"
   },
-  "homepage": "https://github.com/Tactikerl/SP2-Noroff-Auction-Application#readme"
+  "homepage": "https://github.com/Tactikerl/SP2-Noroff-Auction-Application#readme",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "prettier --write"
+    ]
+  }
 }
