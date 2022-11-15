@@ -9,24 +9,25 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "vite": "^3.1.0"
   },
   "description": "Application for Noroff Auction website",
   "main": "main.js",
   "dependencies": {
-    "esbuild-windows-64": "^0.15.14",
     "esbuild": "^0.15.14",
-    "is-core-module": "^2.11.0",
+    "esbuild-windows-64": "^0.15.14",
     "function-bind": "^1.1.1",
-    "nanoid": "^3.3.4",
     "has": "^1.0.3",
-    "picocolors": "^1.0.0",
+    "is-core-module": "^2.11.0",
+    "nanoid": "^3.3.4",
     "path-parse": "^1.0.7",
+    "picocolors": "^1.0.0",
     "postcss": "^8.4.19",
     "resolve": "^1.22.1",
     "rollup": "^2.79.1",
-    "supports-preserve-symlinks-flag": "^1.0.0",
-    "source-map-js": "^1.0.2"
+    "source-map-js": "^1.0.2",
+    "supports-preserve-symlinks-flag": "^1.0.0"
   },
   "repository": {
     "type": "git",
