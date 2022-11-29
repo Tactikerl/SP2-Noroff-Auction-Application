@@ -1,6 +1,9 @@
-// const listingsContainer = document.querySelector
+import {
+  API_AUCTION_URL,
+  AUCTION_LISTINGS,
+  AUCTION_LISTING_PARAMS,
+} from "./api.js";
 
-// fetch(`${API_AUCTION_URL}${AUCTION_LISTING}${AUCTION_BIDS_PARAMS}`)
 const listingsContainer = document.querySelector("#listingsContainer");
 const myHeaders = new Headers();
 let currentListings = [];
@@ -12,7 +15,7 @@ const requestOptions = {
 };
 
 fetch(
-  "https://nf-api.onrender.com/api/v1/auction/listings?limit=50&_seller=&_bids=",
+  `${API_AUCTION_URL}${AUCTION_LISTINGS}${AUCTION_LISTING_PARAMS}`,
   requestOptions
 )
   .then((response) => response.json())
@@ -22,29 +25,53 @@ fetch(
   })
   .catch((error) => console.log("error", error));
 
-function renderListings(listings) {
-  listings.forEach(function (getListings) {
-    listingsContainer.innerHTML += `<li class="d-flex" id="listObject">
-  
-  <div class="flex-grow-1 ms-3">
-     <h4 class="fs-5">
-         <a href="#fakelink">
-             ${getListings.title}
-         </a>
-     </h4>
-    
-     <h6 class="fs-6">
-         <small>
-             ${getListings.tags}
-         </small>
-     </h6>
-     <img class="media-object user-message"
-       src="${getListings.media}" alt="Image of ${getListings.title}"
-     <p>
-         ${getListings.description}
-     </p>
-     <hr>
-  </div>
-  </li>`;
+export function renderListings(listings) {
+  listings.forEach(function (getListings, index) {
+    const createDate = new Date(getListings.created);
+    const endDate = new Date(getListings.endsAt);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    const listHTML = `
+      <div class="col-sm-6">
+        <div class="card" style="width: 18rem;">
+            <a href="">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        ${getListings.title}</h5>
+                    <p class="card-text" id='itemDscr${index}'>
+                    </p>
+                </div>
+                <img src="${getListings.media}"
+                    class="card-img-top" alt="...">
+            </a>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Created at:
+                    ${createDate.toLocaleDateString("en-US", options)}
+                </li>
+                <li class="list-group-item">Ends at:
+                    ${endDate.toLocaleDateString("en-US", options)}
+                </li>
+                <li class="list-group-item">Number of bids:
+                    ${getListings._count.bids}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another
+                    link</a>
+            </div>
+        </div>
+      </div>          
+      `;
+    listingsContainer.innerHTML += listHTML;
+    const parentContainer = document.querySelector(`#itemDscr${index}`);
+    const listDscr = document.createElement("span");
+    listDscr.textContent = `${getListings.description}`;
+    parentContainer.appendChild(listDscr);
   });
 }
