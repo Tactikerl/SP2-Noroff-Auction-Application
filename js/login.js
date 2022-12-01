@@ -43,6 +43,10 @@ const loginHTML = `
           <input type="password" class="form-control"
               id="userPassword">
       </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary"
+        id="loginBtn">Login</button>
+      </div>
   </form>`;
 
 const registerHTML = `
@@ -74,26 +78,28 @@ const registerHTML = `
       <div class="col-md-6">
           <label for="avatar" class="form-label">Profile
               Avatar</label>
-          <input type="url" name="avatar" id="profileAvatar">
+          <input type="url" name="avatar" id="profileAvatar" placeholder="URL">
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary"
+        id="profileBtn">Create Profile</button>
       </div>
   </form>`;
 
-const btnLogin = document.querySelector("#btnradio1");
-//const btnRegister = document.querySelector("#btnradio2");
 const formCntr = document.querySelector("#formContainer");
-if (btnLogin.checked) {
-  formCntr.innerHTML = "";
-  formCntr.innerHTML += loginHTML;
-} else {
-  formCntr.innerHTML = "";
-  formCntr.innerHTML += registerHTML;
-}
-
-const myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${token}`);
-myHeaders.append("Content-Type", "application/json");
+formCntr.innerHTML = loginHTML;
+document.getElementById("btnradio1").addEventListener("click", () => {
+  formCntr.innerHTML = loginHTML;
+});
+document.getElementById("btnradio2").addEventListener("click", () => {
+  formCntr.innerHTML = registerHTML;
+});
 
 export function login(userEmail, userPassword) {
+  const myHeaders = new Headers();
+  // myHeaders.append("Authorization", `Bearer ${token}`);
+  myHeaders.append("Content-Type", "application/json");
+
   const raw = JSON.stringify({
     email: userEmail,
     password: userPassword,
@@ -120,7 +126,7 @@ export function login(userEmail, userPassword) {
     .catch((error) => console.log("error", error));
 }
 
-function loginUser(event) {
+export function loginUser(event) {
   event.preventDefault();
 
   const userEmail = document.getElementById("userEmail").value.toLowerCase();
@@ -131,3 +137,4 @@ function loginUser(event) {
   }
   login(userEmail, userPassword);
 }
+document.getElementById("loginBtn").addEventListener("click", loginUser);
