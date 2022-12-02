@@ -9,6 +9,30 @@ const myHeaders = new Headers();
 let currentListings = [];
 myHeaders.append("Content-Type", "application/json");
 
+export const token = localStorage.getItem("token");
+export const userName = localStorage.getItem("username");
+export const loginID = document.querySelector("#userNav");
+
+export const userConfirmed = `
+  <div class="col-md-6">
+    <span>Welcome ${userName}</span>
+  </div>`;
+
+export const userNull = `
+<span>Hi there, you seem to not be registered/logged in,
+  click this <a href="/login.html">
+    <button class="btn btn-primary">LOGIN</button>
+  </a> button to do so, or peruse our auction listings in limited mode if you wish so.</span>
+`;
+
+if (token !== null) {
+  loginID.innerHTML = userConfirmed;
+} else {
+  loginID.innerHTML = userNull;
+}
+{
+  /* ; */
+}
 const requestOptions = {
   method: "GET",
   headers: myHeaders,
