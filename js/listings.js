@@ -16,6 +16,14 @@ export const loginID = document.querySelector("#userNav");
 export const userConfirmed = `
   <div class="col-md-6">
     <span>Welcome ${userName}</span>
+    <div class="col-md-6">
+      <button class="btn btn-primary"
+        id="profileBtn">Profile</button>
+    </div>
+    <div class="col-md-6">
+      <button class="btn btn-danger"
+        id="logoutBtn">Logout</button>
+    </div>
   </div>`;
 
 export const userNull = `
@@ -25,11 +33,11 @@ export const userNull = `
   </a> button to do so, or peruse our auction listings in limited mode if you wish so.</span>
 `;
 
-if (token !== null) {
-  loginID.innerHTML = userConfirmed;
-} else {
-  loginID.innerHTML = userNull;
-}
+// if (token !== null) {
+//   loginID.innerHTML = userConfirmed;
+// } else {
+//   loginID.innerHTML = userNull;
+// }
 {
   /* ; */
 }

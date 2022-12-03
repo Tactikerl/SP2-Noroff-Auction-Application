@@ -1,41 +1,96 @@
-<form action="" class="row g-3">
+<!-- <form action="" class="row g-3">
   <div class="col-md-6">
     <label for="userEmail" class="form-label">Email</label>
-    <input type="email" class="form-control" id="userEmail" />
+    <input type="email" class="form-control"
+      id="userEmail" />
   </div>
   <div class="col-md-6">
-    <label for="userPassword" class="form-label">Password</label>
-    <input type="password" class="form-control" id="userPassword" />
+    <label for="userPassword"
+      class="form-label">Password</label>
+    <input type="password" class="form-control"
+      id="userPassword" />
   </div>
   <div class="col-md-6">
-    <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
+    <button type="button" class="btn btn-primary"
+      id="loginBtn">Login</button>
   </div>
 </form>
 
 <form action="" class="row g-3">
   <div class="col-md-6">
-    <label for="newUserName" class="form-label">Username</label>
-    <input type="text" class="form-control" id="newUserName" />
+    <label for="newUserName"
+      class="form-label">Username</label>
+    <input type="text" class="form-control"
+      id="newUserName" />
   </div>
   <div class="col-md-6">
-    <label for="newUserEmail" class="form-label">Email</label>
-    <input type="email" class="form-control" id="userEmail" />
+    <label for="newUserEmail"
+      class="form-label">Email</label>
+    <input type="email" class="form-control"
+      id="userEmail" />
   </div>
   <div class="col-md-6">
-    <label for="userPassword" class="form-label">Password</label>
-    <input type="password" class="form-control" id="userPassword" />
+    <label for="userPassword"
+      class="form-label">Password</label>
+    <input type="password" class="form-control"
+      id="userPassword" />
   </div>
   <div class="col-md-6">
-    <label for="repeatPassword" class="form-label">Repeat Password</label>
-    <input type="text" class="form-control" id="repeatPassword" />
+    <label for="repeatPassword" class="form-label">Repeat
+      Password</label>
+    <input type="text" class="form-control"
+      id="repeatPassword" />
   </div>
   <div class="col-md-6">
-    <label for="avatar" class="form-label">Profile Avatar</label>
-    <input type="url" name="avatar" id="profileAvatar" />
+    <label for="avatar" class="form-label">Profile
+      Avatar</label>
+    <input type="url" name="avatar" id="profileAvatar" placeholder="URL"/>
   </div>
   <div class="col-md-6">
-    <button type="button" class="btn btn-primary" id="profileBtn">
-      Create Profile
-    </button>
+    <button type="button" class="btn btn-primary"
+      id="profileBtn">Create Profile</button>
   </div>
-</form>
+</form> -->
+
+<div class="col-md-6">
+  <span>Welcome ${userName}</span>
+  <span>You currently have ${profile.credits} credits</span>
+  <span>You have ${profile._count.listings} listings registered</span>
+  <img src="${profile.avatar}" alt="" class="img-fluid" />
+  <div class="col-md-6">
+    <a href="/profile.html"
+      ><button class="btn btn-primary" id="profileBtn">Profile</button></a
+    >
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-danger" id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+<a href="/login.html">
+  <button class="btn btn-primary">LOGIN</button>
+</a>
+
+<span
+  >Hi there, you seem to not be registered/logged in, click this
+  <a href="/login.html">
+    <button class="btn btn-primary">LOGIN</button>
+  </a>
+  button to do so, or peruse our auction listings if you wish so.</span
+>
+
+<div class="col-md-6">
+  <span>Welcome to your profile, ${userName}!</span>
+  <div class="col-md-6">
+    <button class="btn btn-primary" id="profileBtn">Make new Auction</button>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-primary" id="profileBtn">Make listing</button>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-primary" id="profileBtn">Make listing</button>
+  </div>
+  <div class="col-md-6">
+    <button class="btn btn-danger" id="logoutBtn">Logout</button>
+  </div>
+</div>
