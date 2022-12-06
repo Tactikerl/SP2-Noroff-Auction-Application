@@ -1,4 +1,4 @@
-import { API_AUCTION_URL, AUCTION_LOGIN, AUCTION_REGISTER } from "./api.js";
+import { API_AUCTION_URL, AUCTION_LOGIN } from "./api.js";
 import { loginHTML, registerHTML } from "./htmlconst.js";
 
 const formCntr = document.querySelector("#formContainer");
