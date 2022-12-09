@@ -63,7 +63,7 @@ profileFetch(renderProfile, token, userName);
 //       </div>`;
 //       loginID.innerHTML = shortProfile;
 //       profileContainer.innerHTML = renderProfileHTML(profile, userName);
-//       document.getElementById("logoutBtn").addEventListener("click", logout);
+//
 //     } else {
 //       loginID.innerHTML = userNull;
 //     }

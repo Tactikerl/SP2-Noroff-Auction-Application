@@ -10,8 +10,8 @@ export const AUCTION_PROFILE_LISTINGS =
 
 export const AUCTION_LOGIN = "/auth/login";
 export const AUCTION_REGISTER = "/auth/register";
-export const AUCTION_LISTINGS = "/listings";
-export const AUCTION_BIDS_PARAMS = "?_seller=&_bids=&id";
+export const AUCTION_LISTINGS = "/listings/";
+export const AUCTION_BIDS_PARAMS = "?_seller=true&_bids=true";
 export const AUCTION_LISTING_PARAMS = "?limit=50&_seller=&_bids=";
 
 export function profileFetch(callback, token, userName) {

@@ -12,3 +12,11 @@ export const dateOptions = {
 //   const userName = localStorage.getItem("username");
 
 // }
+export function dateFormat(listings) {
+  console.log(listings);
+  return {
+    createDate: new Date(listings.created),
+    updateDate: new Date(listings.updated),
+    endDate: new Date(listings.endAt),
+  };
+}
