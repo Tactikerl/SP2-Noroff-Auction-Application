@@ -4,17 +4,12 @@ import {
   AUCTION_LISTING_PARAMS,
 } from "./api.js";
 import { indexListingHTML } from "./htmlconst.js";
-
 import { dateFormat, dateOptions } from "./utils.js";
 
 const listingsContainer = document.querySelector("#listingsContainer");
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 let currentListings = [];
-
-export const token = localStorage.getItem("token");
-export const userName = localStorage.getItem("username");
-export const loginID = document.querySelector("#userNav");
 
 const requestOptions = {
   method: "GET",
@@ -34,12 +29,7 @@ fetch(
 
 export function renderListings(listings) {
   listings.forEach(function (getListings, index) {
-    // const createDate = new Date(getListings.created);
-    // const updateDate = new Date(getListings.updated);
-    // const endDate = new Date(getListings.endsAt);
-
     const dates = dateFormat(getListings);
-
     listingsContainer.innerHTML += indexListingHTML(
       getListings,
       dates.createDate,

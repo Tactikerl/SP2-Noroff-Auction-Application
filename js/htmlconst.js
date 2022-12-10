@@ -221,7 +221,8 @@ export function singleListingHTML(
   createDate,
   updateDate,
   endDate,
-  options
+  options,
+  index
 ) {
   return `
     <div class="container py-5">
@@ -264,15 +265,26 @@ export function singleListingHTML(
                 class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>Number of bids: </span><span>${listing._count.bids}</span>
               </div>
-              <div class"d-flex justify-content-between total font-weight-bold mt-4">
-                <ul>
-                  <li>
-                    <span>${listing.bids.bidderName}</span>
-                  </li>
-                  <li>
-                    <span>${listing.bids.amount}</span>
-                  </li>
-                </ul>
+              <div
+                class="d-flex justify-content-between total font-weight-bold mt-4">
+                <span>highest bid: </span><span>${
+                  listing.bids.at(-1).amount
+                }</span>
+              </div>
+              <form class="row g-3">
+                <div class="col-auto">
+                  <label for="userBid" class="form-label">Your bid</label>
+                  <input type="number" class="form-control" id="userBid"
+                    placeholder="0">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mb-3"
+                    id="bidBtn">Place Bid</button>
+                </div>
+              </form>
+              <div class"d-flex justify-content-between total font-weight-bold mt-4" id="bidSection">
+                <div class"d-flex justify-content-between total font-weight-bold mt-4" id="bidsContainer${index}">
+                </div>
               </div>
             </div>
           </div>

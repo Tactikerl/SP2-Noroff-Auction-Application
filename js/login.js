@@ -1,5 +1,6 @@
 import { API_AUCTION_URL, AUCTION_LOGIN } from "./api.js";
 import { loginHTML, registerHTML } from "./htmlconst.js";
+import { myHeaders } from "./utils.js";
 
 const formCntr = document.querySelector("#formContainer");
 formCntr.innerHTML = loginHTML;
@@ -11,20 +12,16 @@ document.getElementById("btnradio2").addEventListener("click", () => {
 });
 
 export function login(userEmail, userPassword) {
-  const myHeaders = new Headers();
-  // myHeaders.append("Authorization", `Bearer ${token}`);
-  myHeaders.append("Content-Type", "application/json");
-
   const raw = JSON.stringify({
     email: userEmail,
     password: userPassword,
   });
-
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: raw,
   };
+
   fetch(`${API_AUCTION_URL}${AUCTION_LOGIN}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {

@@ -7,16 +7,17 @@ export const dateOptions = {
   minute: "2-digit",
 };
 
-// export function storageID(token, userName) {
-//   return const token = localStorage.getItem("token");
-//   const userName = localStorage.getItem("username");
+export const token = localStorage.getItem("token");
+export const userName = localStorage.getItem("username");
+export const loginID = document.querySelector("#userNav");
 
-// }
-export function dateFormat(listings) {
-  console.log(listings);
+export function dateFormat(date) {
   return {
-    createDate: new Date(listings.created),
-    updateDate: new Date(listings.updated),
-    endDate: new Date(listings.endsAt),
+    createDate: new Date(date.created),
+    updateDate: new Date(date.updated),
+    endDate: new Date(date.endsAt),
   };
 }
+export const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+myHeaders.append("Content-Type", "application/json");
