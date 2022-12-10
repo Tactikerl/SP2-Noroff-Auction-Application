@@ -3,11 +3,7 @@ import {
   AUCTION_LISTINGS,
   AUCTION_LISTING_PARAMS,
 } from "./api.js";
-import {
-  indexListingHTML,
-  singleListingHTML,
-  shortSeller,
-} from "./htmlconst.js";
+import { indexListingHTML } from "./htmlconst.js";
 
 import { dateFormat, dateOptions } from "./utils.js";
 
@@ -58,21 +54,4 @@ export function renderListings(listings) {
     listDscr.textContent = `${getListings.description}`;
     parentContainer.appendChild(listDscr);
   });
-}
-
-export function listingRender(listings) {
-  const listing = listings;
-  const createDate = new Date(listing.created);
-  const updateDate = new Date(listing.updated);
-  const endDate = new Date(listing.endsAt);
-  const sellerDisplay = document.getElementById("sellerDisplay");
-  sellerDisplay.innerHTML = shortSeller(listing);
-  const listingContainer = document.getElementById("listingContainer");
-  listingContainer.innerHTML = singleListingHTML(
-    listing,
-    createDate,
-    updateDate,
-    endDate,
-    dateOptions
-  );
 }

@@ -8,3 +8,88 @@
     so.</span
   >
 </div>
+
+<div class="card mb-3" style="max-width: 540px">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        src="${profile.avatar}"
+        class="img-fluid rounded-start"
+        alt="profile image for $[userName]"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Welcome ${userName}!</h5>
+        <p class="card-text">
+          You currently have ${profile.credits} credits in your account and have
+          ${profile._count.listings} listings registered
+        </p>
+        <p class="card-text"></p>
+        <div class="col-md-6">
+          <a href="/profile.html"
+            ><button class="btn btn-primary" id="profileBtn">Profile</button></a
+          >
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-danger" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3" style="max-width: 540px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="${listing.seller.avatar}"
+          class="img-fluid rounded-start"
+          alt="profile image for ${listing.seller.name}"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Sold by ${listing.seller.name}</h5>
+          <div class="col-md-6">
+            <a href="/profile.html"
+              ><button class="btn btn-primary" id="profileBtn">
+                Profile
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="${profile.avatar}"
+          class="img-fluid rounded-start"
+          alt="profile image for $[userName]">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Welcome ${userName}</h5>
+          <p class="card-text">
+            You currently have ${profile.credits}
+            credits in your account and have
+            ${profile._count.listings} listings
+            registered
+          </p>
+          <p class="card-text"></p>
+          <div class="col-md-6">
+            <a href="/profile.html"><button
+                class="btn btn-primary"
+                id="profileBtn">Profile</button></a>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-danger"
+              id="logoutBtn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  </div>
+</div>

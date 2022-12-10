@@ -264,6 +264,16 @@ export function singleListingHTML(
                 class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>Number of bids: </span><span>${listing._count.bids}</span>
               </div>
+              <div class"d-flex justify-content-between total font-weight-bold mt-4">
+                <ul>
+                  <li>
+                    <span>${listing.bids.bidderName}</span>
+                  </li>
+                  <li>
+                    <span>${listing.bids.amount}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -17,6 +17,6 @@ export function dateFormat(listings) {
   return {
     createDate: new Date(listings.created),
     updateDate: new Date(listings.updated),
-    endDate: new Date(listings.endAt),
+    endDate: new Date(listings.endsAt),
   };
 }

@@ -1,12 +1,13 @@
-// import { API_AUCTION_URL } from "./api.js";
+import { dateFormat, dateOptions } from "./utils.js";
+
+import { singleListingHTML, shortSeller } from "./htmlconst.js";
 
 import {
   API_AUCTION_URL,
   AUCTION_BIDS_PARAMS,
   AUCTION_LISTINGS,
 } from "./api.js";
-import { token } from "./listings.js";
-import { listingRender } from "./listings.js";
+export const token = localStorage.getItem("token");
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 
@@ -34,3 +35,21 @@ fetch(
   .then((listing) => {
     listingRender(listing);
   });
+function listingRender(listings) {
+  const listing = listings;
+  // const createDate = new Date(listing.created);
+  // const updateDate = new Date(listing.updated);
+  // const endDate = new Date(listing.endsAt);
+  const dates = dateFormat(listing);
+  const sellerDisplay = document.getElementById("sellerDisplay");
+  sellerDisplay.innerHTML = shortSeller(listing);
+  const listingContainer = document.getElementById("listingContainer");
+  listingContainer.innerHTML = singleListingHTML(
+    listing,
+    dates.createDate,
+    dates.updateDate,
+    dates.endDate,
+    dateOptions
+  );
+  console.log(listing);
+}
