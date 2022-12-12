@@ -4,7 +4,7 @@ import {
   AUCTION_LISTING_PARAMS,
 } from "./api.js";
 import { indexListingHTML } from "./htmlconst.js";
-import { dateFormat, dateOptions } from "./utils.js";
+import { dateFormat, dateOptions, sortListings } from "./utils.js";
 
 const listingsContainer = document.querySelector("#listingsContainer");
 const myHeaders = new Headers();
@@ -38,7 +38,7 @@ export function renderListings(listings) {
       dateOptions,
       index
     );
-    console.log(dates);
+
     const parentContainer = document.querySelector(`#itemDscr${index}`);
     const listDscr = document.createElement("span");
     listDscr.textContent = `${getListings.description}`;

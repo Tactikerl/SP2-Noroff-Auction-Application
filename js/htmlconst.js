@@ -22,7 +22,7 @@ export const registerHTML = `
   <form action="" class="row g-3" id="registerForm">
       <div class="col-md-6">
           <label for="newUserName"
-              class="form-label">Username</label>
+              class="form-label">Username (Case sensitive)</label>
           <input type="text" class="form-control"
               id="newUserName">
       </div>
@@ -30,13 +30,13 @@ export const registerHTML = `
           <label for="newUserEmail"
               class="form-label">Email</label>
           <input type="email" class="form-control"
-              id="userEmail">
+              id="newUserEmail">
       </div>
       <div class="col-md-6">
           <label for="userPassword"
-              class="form-label">Password</label>
+              class="form-label">Password (Case sensitive)</label>
           <input type="password" class="form-control"
-              id="userPassword">
+              id="newUserPassword">
       </div>
       <div class="col-md-6">
           <label for="repeatPassword"
@@ -47,12 +47,46 @@ export const registerHTML = `
       <div class="col-md-6">
           <label for="avatar" class="form-label">Profile
               Avatar</label>
-          <input type="url" name="avatar" id="profileAvatar" placeholder="URL">
+          <input type="url" name="avatar" id="newUserAvatar" placeholder="URL">
       </div>
       <div class="col-md-6">
         <button type="button" class="btn btn-primary"
-        id="profileBtn">Create Profile</button>
+        id="registerBtn">Create Profile</button>
       </div>
+  </form>`;
+
+export const listingFormHTML = `
+  <form action="" class="row g-3" id="listingForm">
+    <div class="mb-3">
+      <label for="listingName" class="form-label">What are you
+        listing?</label>
+      <input type="text" class="form-control"
+        id="listingTitle" placeholder="Listing Name">
+    </div>
+    <div class="mb-3">
+      <label for="itemDescription" class="form-label">Describe
+        your listing</label>
+      <textarea class="form-control" id="itemDescription"
+        rows="3" placeholder="Short and Concise description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="itemTags" class="form-label">Tags</label>
+      <input type="text" class="form-control" id="itemTags"
+         placeholder="Tags">
+    </div>
+    <div class="mb-3">
+      <label for="endDate" class="form-label">Auction ends at?</label>
+      <input type="datetime-local" name="endDate" id="endDate">
+    </div>
+    <div class="mb-3">
+      <label for="listingMedia" class="form-label">Link
+        images here(url)</label>
+      <input class="form-control" type="url"
+        id="listingMedia" multiple>
+    </div>
+    <div class="mb-3">
+    <button type="button" class="btn btn-info" id="publishListing">Publish Listing</button>
+    </div>
   </form>`;
 
 export function renderProfileHTML(profile, userName) {
@@ -68,33 +102,20 @@ export function renderProfileHTML(profile, userName) {
                     src="${profile.avatar}"
                     class="rounded-circle img-fluid"
                     style="width: 100px"
-                  />
+                  id="userAvatar"/>
                 </div>
                 <h4 class="mb-2">${userName}</h4>
-                <p class="text-muted mb-4"><span class="mx-2">|</span></p>
-                <div class="mb-4 pb-2">
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-floating"
-                  >
-                    <i class="fab fa-facebook-f fa-lg"></i>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-floating"
-                  >
-                    <i class="fab fa-twitter fa-lg"></i>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary btn-floating"
-                  >
-                    <i class="fab fa-skype fa-lg"></i>
-                  </button>
+                <p class="text-muted mb-4"><span class="mx-2"></span></p>
+                <div class="col-md-6">
+                    <label for="avatar" class="form-label">Profile
+                     Avatar</label>
+                    <input type="url" name="avatar" id="newAvatarURL" placeholder="URL">
                 </div>
-                <button type="button" class="btn btn-primary btn-rounded btn-lg">
-                  Message now
+                <div>
+                <button type="button" class="btn btn-primary btn-rounded btn-lg" id="avatarUrlBtn">
+                  Change avatar
                 </button>
+                </div>
                 <div class="d-flex justify-content-between text-center mt-5 mb-2">
                   <div>
                     <p class="mb-2 h5">${profile.credits}</p>
@@ -103,8 +124,7 @@ export function renderProfileHTML(profile, userName) {
                   <div class="px-3">
                     <p class="mb-2 h5">${profile._count.listings}</p>
                     <p class="text-muted mb-0">Amount of Listings</p>
-                  </div>
-                  
+                  </div>                  
                 </div>
               </div>
             </div>
@@ -141,6 +161,11 @@ export function shortProfile(profile, userName) {
             <div class="col-md-6">
               <button class="btn btn-danger"
                 id="logoutBtn">Logout</button>
+            </div>
+            <div class="col-md-6">
+            <a href="/createlisting.html"><button
+                  class="btn btn-primary"
+                  id="createBtn">Create Listing</button></a>            
             </div>
           </div>
         </div>
@@ -197,7 +222,7 @@ export function indexListingHTML(
             <li class="list-group-item">Created at:
                 ${createDate.toLocaleDateString("en-US", options)}
             </li>
-            <li class="list-group-item">Ends at:
+            <li class="list-group-item">Last updated:
                 ${updateDate.toLocaleDateString("en-US", options)}
             </li>
             <li class="list-group-item">Ends at:
@@ -265,12 +290,16 @@ export function singleListingHTML(
                 class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>Number of bids: </span><span>${listing._count.bids}</span>
               </div>
-              <div
+              ${
+                listing.bids.length > 0
+                  ? `<div
                 class="d-flex justify-content-between total font-weight-bold mt-4">
                 <span>highest bid: </span><span>${
                   listing.bids.at(-1).amount
                 }</span>
-              </div>
+              </div>`
+                  : ""
+              }
               <form class="row g-3">
                 <div class="col-auto">
                   <label for="userBid" class="form-label">Your bid</label>

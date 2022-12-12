@@ -21,3 +21,9 @@ export function dateFormat(date) {
 export const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${token}`);
 myHeaders.append("Content-Type", "application/json");
+
+export function sortListings(listings) {
+  return [...listings].sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
+  );
+}

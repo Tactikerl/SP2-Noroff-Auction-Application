@@ -1,4 +1,4 @@
-import { API_AUCTION_URL, AUCTION_LOGIN } from "./api.js";
+import { API_AUCTION_URL, AUCTION_LOGIN, AUCTION_REGISTER } from "./api.js";
 import { loginHTML, registerHTML } from "./htmlconst.js";
 import { myHeaders } from "./utils.js";
 
@@ -6,9 +6,13 @@ const formCntr = document.querySelector("#formContainer");
 formCntr.innerHTML = loginHTML;
 document.getElementById("btnradio1").addEventListener("click", () => {
   formCntr.innerHTML = loginHTML;
+  document.getElementById("loginBtn").addEventListener("click", loginUser);
 });
 document.getElementById("btnradio2").addEventListener("click", () => {
   formCntr.innerHTML = registerHTML;
+  document
+    .getElementById("registerBtn")
+    .addEventListener("click", registerUser);
 });
 
 export function login(userEmail, userPassword) {
@@ -49,4 +53,28 @@ export function loginUser(event) {
   }
   login(userEmail, userPassword);
 }
-document.getElementById("loginBtn").addEventListener("click", loginUser);
+
+export function registerUser() {
+  const newUserName = document.getElementById("newUserName").value;
+  const newUserEmail = document
+    .getElementById("newUserEmail")
+    .value.toLowerCase();
+  const newUserAvatar = document.getElementById("newUserAvatar").value;
+  const newUserPassword = document.getElementById("newUserPassword").value;
+  const regData = JSON.stringify({
+    name: newUserName,
+    email: newUserEmail,
+    avatar: newUserAvatar,
+    password: newUserPassword,
+  });
+  const regOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: regData,
+  };
+  fetch(`${API_AUCTION_URL}${AUCTION_REGISTER}`, regOptions)
+    .then((response) => response.json())
+    .then(() => {
+      login(newUserEmail, newUserPassword);
+    });
+}

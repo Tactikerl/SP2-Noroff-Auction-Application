@@ -10,7 +10,6 @@ import {
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const listingID = urlSearchParams.get("listings");
-console.log(listingID);
 
 const requestOptions = {
   method: "GET",
@@ -25,7 +24,7 @@ fetch(
   .then((response) => response.json())
   .then((listing) => {
     listingRender(listing);
-    highBid = listing.bids.at(-1).amount;
+    highBid = listing.bids.length > 0 ? listing.bids.at(-1).amount : 0;
   });
 
 function listingRender(listing) {
