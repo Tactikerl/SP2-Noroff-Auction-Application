@@ -1,10 +1,15 @@
-// const listingsContainer = document.querySelector
+import {
+  API_AUCTION_URL,
+  AUCTION_LISTINGS,
+  AUCTION_LISTING_PARAMS,
+} from "./api.js";
+import { indexListingHTML } from "./htmlconst.js";
+import { dateFormat, dateOptions, sortListings } from "./utils.js";
 
-// fetch(`${API_AUCTION_URL}${AUCTION_LISTING}${AUCTION_BIDS_PARAMS}`)
 const listingsContainer = document.querySelector("#listingsContainer");
 const myHeaders = new Headers();
-let currentListings = [];
 myHeaders.append("Content-Type", "application/json");
+let currentListings = [];
 
 const requestOptions = {
   method: "GET",
@@ -12,7 +17,7 @@ const requestOptions = {
 };
 
 fetch(
-  "https://nf-api.onrender.com/api/v1/auction/listings?limit=50&_seller=&_bids=",
+  `${API_AUCTION_URL}${AUCTION_LISTINGS}${AUCTION_LISTING_PARAMS}`,
   requestOptions
 )
   .then((response) => response.json())
@@ -22,29 +27,21 @@ fetch(
   })
   .catch((error) => console.log("error", error));
 
-function renderListings(listings) {
-  listings.forEach(function (getListings) {
-    listingsContainer.innerHTML += `<li class="d-flex" id="listObject">
-  
-  <div class="flex-grow-1 ms-3">
-     <h4 class="fs-5">
-         <a href="#fakelink">
-             ${getListings.title}
-         </a>
-     </h4>
-    
-     <h6 class="fs-6">
-         <small>
-             ${getListings.tags}
-         </small>
-     </h6>
-     <img class="media-object user-message"
-       src="${getListings.media}" alt="Image of ${getListings.title}"
-     <p>
-         ${getListings.description}
-     </p>
-     <hr>
-  </div>
-  </li>`;
+export function renderListings(listings) {
+  listings.forEach(function (getListings, index) {
+    const dates = dateFormat(getListings);
+    listingsContainer.innerHTML += indexListingHTML(
+      getListings,
+      dates.createDate,
+      dates.updateDate,
+      dates.endDate,
+      dateOptions,
+      index
+    );
+
+    const parentContainer = document.querySelector(`#itemDscr${index}`);
+    const listDscr = document.createElement("span");
+    listDscr.textContent = `${getListings.description}`;
+    parentContainer.appendChild(listDscr);
   });
 }

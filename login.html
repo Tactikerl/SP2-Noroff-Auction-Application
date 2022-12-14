@@ -7,9 +7,8 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auction House Listings</title>
+    <title>Auction House Login/Register</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-light">
@@ -55,10 +54,40 @@
         </div>
       </div>
     </nav>
-    <div id="userNav"></div>
-    <div id="listingsContainer" class="row row-cols-3 row-cols-md-3 g-4"></div>
-    <script defer type="module" src="/js/listings.js"></script>
-    <script type="module" src="/js/logout.js"></script>
-    <script defer type="module" src="/js/shortprofile.js"></script>
+    <div class="card mb-3">
+      <div class="card-body">
+        <div
+          class="btn-group"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio1"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn btn-outline-primary" for="btnradio1"
+            >Login Form</label
+          >
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="btnradio"
+            id="btnradio2"
+            autocomplete="off"
+          />
+          <label class="btn btn-outline-primary" for="btnradio2"
+            >Register Form</label
+          >
+        </div>
+      </div>
+    </div>
+    <div id="formContainer"></div>
+    <script defer type="module" src="/js/login.js"></script>
+    <script defer type="module" src="/js/htmlconst.js"></script>
   </body>
 </html>
