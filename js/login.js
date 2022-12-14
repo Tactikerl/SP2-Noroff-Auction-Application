@@ -8,6 +8,7 @@ document.getElementById("btnradio1").addEventListener("click", () => {
   formCntr.innerHTML = loginHTML;
   document.getElementById("loginBtn").addEventListener("click", loginUser);
 });
+document.getElementById("loginBtn").addEventListener("click", loginUser);
 document.getElementById("btnradio2").addEventListener("click", () => {
   formCntr.innerHTML = registerHTML;
   document

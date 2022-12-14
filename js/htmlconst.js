@@ -1,25 +1,31 @@
 export const loginHTML = `
-  <form action="" class="row g-3" id="loginForm">
-      <div class="col-md-6">
-          <label for="userEmail"
-              class="form-label">Email</label>
-          <input type="email" class="form-control"
-              id="userEmail">
+    <form action="" class="row g-3" id="loginForm">
+      <div class="card mb-2">
+        <div class="card-body">
+          <div class="col-md-6">
+              <label for="userEmail"
+                  class="form-label">Email</label>
+              <input type="email" class="form-control"
+                  id="userEmail">
+          </div>
+          <div class="col-md-6">
+              <label for="userPassword"
+                  class="form-label">Password</label>
+              <input type="password" class="form-control"
+                  id="userPassword">
+          </div>
+          <div class="col-md-6">
+              <button type="button" class="btn btn-primary"
+              id="loginBtn">Login</button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-6">
-          <label for="userPassword"
-              class="form-label">Password</label>
-          <input type="password" class="form-control"
-              id="userPassword">
-      </div>
-      <div class="col-md-6">
-        <button type="button" class="btn btn-primary"
-        id="loginBtn">Login</button>
-      </div>
-  </form>`;
+    </form>`;
 
 export const registerHTML = `
   <form action="" class="row g-3" id="registerForm">
+  <div class="card mb-2">
+    <div class="card-body">
       <div class="col-md-6">
           <label for="newUserName"
               class="form-label">Username (Case sensitive)</label>
@@ -41,7 +47,7 @@ export const registerHTML = `
       <div class="col-md-6">
           <label for="repeatPassword"
               class="form-label">Repeat Password</label>
-          <input type="text" class="form-control"
+          <input type="password" class="form-control"
               id="repeatPassword">
       </div>
       <div class="col-md-6">
@@ -52,11 +58,13 @@ export const registerHTML = `
       <div class="col-md-6">
         <button type="button" class="btn btn-primary"
         id="registerBtn">Create Profile</button>
+        </div>
+        </div>
       </div>
   </form>`;
 
 export const listingFormHTML = `
-  <form action="" class="row g-3" id="listingForm">
+  <form action="" class="row g-3 " id="listingForm">
     <div class="mb-3">
       <label for="listingName" class="form-label">What are you
         listing?</label>
@@ -92,7 +100,7 @@ export const listingFormHTML = `
 export function renderProfileHTML(profile, userName) {
   return `
     <section class="vh-100" style="background-color: #eee">
-      <div class="container py-5 h-100">
+      <div class="container-fluid">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-12 col-xl-4">
             <div class="card" style="border-radius: 15px">
@@ -136,7 +144,7 @@ export function renderProfileHTML(profile, userName) {
 
 export function shortProfile(profile, userName) {
   return `
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mt-3 ms-3 mb-3" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-md-4">
           <img src="${profile.avatar}"
@@ -206,8 +214,8 @@ export function indexListingHTML(
   index
 ) {
   return `
-  <div class="col-sm-6">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 ms-3 me-1 w-25 h-25d-inline-block">
+    <div class="card mb-4" >
         <a href="/viewListing.html?listings=${getListings.id}">
             <div class="card-body">
                 <h5 class="card-title">
@@ -215,6 +223,7 @@ export function indexListingHTML(
                 <p class="card-text" id='itemDscr${index}'>
                 </p>
             </div>
+            <div class="card-body"></div>
             <img src="${getListings.media}"
                 class="card-img-top" alt="...">
         </a>
@@ -232,9 +241,10 @@ export function indexListingHTML(
                 ${getListings._count.bids}</li>
         </ul>
         <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another
-                link</a>
+            <a href="/viewListing.html?listings=${
+              getListings.id
+            }" class="card-link"><button class="btn btn-primary">View Listing</button></a>
+            
         </div>
     </div>
   </div>          
@@ -324,11 +334,31 @@ export function singleListingHTML(
 
 export function userNull() {
   return `
-    <div class="col-md-6"><span>Hi there, you seem to not be
-      registered/logged in,
-      click this <a href="/login.html">
-        <button class="btn btn-primary">LOGIN</button>
-      </a> button to do so, or peruse our auction listings in
-      limited mode if you wish so.</span>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+          <div class="col-md-4">
+              <img src="https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"
+                  class="img-fluid rounded-start"
+                  alt="profile image for $[userName]">
+          </div>
+          <div class="col-md-8">
+              <div class="card-body">
+                  <h5 class="card-title">Welcome!
+                  </h5>
+                  <p class="card-text">
+                      It seems that you are not logged in. If
+                      you would like to make bids on the
+                      listings, please log in or make an
+                      account by pressing the button
+                      underneath
+                  </p>
+                  <div class="col-md-6">
+                      <a href="/login.html"><button
+                              class="btn btn-primary"
+                              id="profileBtn">Login/Register</button></a>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>`;
 }
