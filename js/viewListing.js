@@ -35,23 +35,20 @@ function listingRender(listing) {
   let bidInfo = ``;
   listing.bids.forEach(function (bids, index) {
     const dates = dateFormat(bids);
-    const bidsHTML = `<div class="col-md-4">
-    <ul id="bidNmbr${index}">
-      <li>
-        <span>bidder: ${bids.bidderName}</span>
-      </li>
-      <li>
-        <span>amount: ${bids.amount}</span>
-      </li>      
-      <li>
-        <span>time of bid: ${dates.createDate.toLocaleDateString(
-          "en-US",
-          dateOptions
-        )}</span>
-      </li>
-    </ul>
+    bidInfo += `<div class="col m-1 border p-3 bg-light ">
+    <ul class="list-group" id="bidNmbr${index}">
+    <li class="list-group-item"><span>Bidder:
+            ${bids.bidderName}</span></li>
+    <li class="list-group-item"><span>Bid Amount:
+            ${bids.amount}</span></li>
+    <li class="list-group-item"><span>Time of bid:
+            ${dates.createDate.toLocaleDateString(
+              "en-US",
+              dateOptions
+            )}</span></li>
+
+</ul>
   </div>`;
-    bidInfo += bidsHTML;
   });
   listingContainer.innerHTML = singleListingHTML(
     listing,
@@ -59,6 +56,7 @@ function listingRender(listing) {
     dates.updateDate,
     dates.endDate,
     dateOptions,
+
     bidInfo
   );
   document.getElementById("bidBtn").addEventListener("click", placeBid);

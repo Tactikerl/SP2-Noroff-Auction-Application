@@ -4,12 +4,12 @@ import {
   AUCTION_LISTING_PARAMS,
 } from "./api.js";
 import { indexListingHTML } from "./htmlconst.js";
-import { dateFormat, dateOptions, sortListings } from "./utils.js";
-
+import { dateFormat, dateOptions } from "./utils.js";
+// , searchInit
 const listingsContainer = document.querySelector("#listingsContainer");
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-let currentListings = [];
+// let currentListings = [];
 
 const requestOptions = {
   method: "GET",
@@ -22,7 +22,7 @@ fetch(
 )
   .then((response) => response.json())
   .then((listings) => {
-    currentListings = listings;
+    // currentListings = listings;
     renderListings(listings);
   })
   .catch((error) => console.log("error", error));
@@ -44,4 +44,5 @@ export function renderListings(listings) {
     listDscr.textContent = `${getListings.description}`;
     parentContainer.appendChild(listDscr);
   });
+  // searchInit(listings)
 }

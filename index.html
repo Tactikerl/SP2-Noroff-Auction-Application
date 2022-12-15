@@ -7,6 +7,7 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="./css/styling.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House Listings</title>
@@ -36,17 +37,17 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Profile</a>
             </li>
-
-            <li class="nav-item">
-              <a class="nav-link">foo</a>
-            </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" id="searchForm">
             <input
+              required
+              minlength="3"
+              name="term"
               class="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              id="searchInput"
             />
             <button class="btn btn-outline-success" type="submit">
               Search
@@ -56,7 +57,15 @@
       </div>
     </nav>
     <div id="userNav"></div>
-    <div id="listingsContainer" class="row row-cols-3 row-cols-md-3 g-4"></div>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div
+          id="listingsContainer"
+          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+        ></div>
+      </div>
+    </div>
     <script defer type="module" src="/js/listings.js"></script>
     <script type="module" src="/js/logout.js"></script>
     <script defer type="module" src="/js/shortprofile.js"></script>

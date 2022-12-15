@@ -27,3 +27,13 @@ export function sortListings(listings) {
     (a, b) => new Date(b.created) - new Date(a.created)
   );
 }
+
+// export function searchInit(listings) {
+//   const searchForm = document.getElementById("searchForm");
+
+//   searchForm.addEventListener("submit", function (event) {
+//     event.preventDefault();
+//     const form = event.target;
+//     const searchTerm = form.term.value;
+//   });
+// }
