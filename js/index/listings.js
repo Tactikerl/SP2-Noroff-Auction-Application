@@ -2,9 +2,9 @@ import {
   API_AUCTION_URL,
   AUCTION_LISTINGS,
   AUCTION_LISTING_PARAMS,
-} from "./api.js";
-import { renderListings } from "./renderListings.js";
-import { setupSearch } from "./search.js";
+} from "../api/api.js";
+import { renderListings } from "../tools/renderListings.js";
+import { setupSearch } from "../tools/search.js";
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

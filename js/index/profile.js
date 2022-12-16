@@ -1,6 +1,6 @@
-import { renderProfileHTML } from "./htmlconst.js";
-import { profileFetch } from "./api.js";
-import { token, userName, myHeaders } from "./utils.js";
+import { renderProfileHTML } from "../html/htmlconst.js";
+import { profileFetch } from "../api/api.js";
+import { token, userName, myHeaders } from "../tools/utils.js";
 
 const renderProfile = (profile, userName) => {
   const profileContainer = document.getElementById("profileContainer");

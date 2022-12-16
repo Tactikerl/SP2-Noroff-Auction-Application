@@ -1,5 +1,10 @@
-import { indexListingHTML } from "./htmlconst.js";
-import { dateFormat, dateOptions } from "./utils.js";
+import { indexListingHTML } from "../html/htmlconst.js";
+import {
+  dateFormat,
+  dateOptions,
+  // defaultListingImg,
+  // defaultProfileImg,
+} from "./utils.js";
 
 const listingsContainer = document.querySelector("#listingsContainer");
 
@@ -23,6 +28,12 @@ export function renderListings(listings) {
       dateOptions,
       index
     );
+    // if (!getListings.seller.avatar) {
+    //   getListings.seller.avatar = defaultProfileImg;
+    // }
+    // if (!getListings.media) {
+    //   getListings.media = defaultListingImg;
+    // }
 
     const parentContainer = document.querySelector(`#itemDscr${index}`);
     const listDscr = document.createElement("span");

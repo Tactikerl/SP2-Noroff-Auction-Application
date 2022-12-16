@@ -1,6 +1,10 @@
-import { API_AUCTION_URL, AUCTION_LOGIN, AUCTION_REGISTER } from "./api.js";
-import { loginHTML, registerHTML } from "./htmlconst.js";
-import { myHeaders } from "./utils.js";
+import {
+  API_AUCTION_URL,
+  AUCTION_LOGIN,
+  AUCTION_REGISTER,
+} from "../api/api.js";
+import { loginHTML, registerHTML } from "../../html/htmlconst.js";
+import { myHeaders } from "../../tools/utils.js";
 
 const formCntr = document.querySelector("#formContainer");
 formCntr.innerHTML = loginHTML;

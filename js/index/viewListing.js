@@ -1,12 +1,12 @@
-import { dateFormat, dateOptions, myHeaders } from "./utils.js";
+import { dateFormat, dateOptions, myHeaders } from "../tools/utils.js";
 
-import { singleListingHTML, shortSeller } from "./htmlconst.js";
+import { singleListingHTML, shortSeller } from "../html/htmlconst.js";
 
 import {
   API_AUCTION_URL,
   AUCTION_BIDS_PARAMS,
   AUCTION_LISTINGS,
-} from "./api.js";
+} from "../api/api.js";
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const listingID = urlSearchParams.get("listings");

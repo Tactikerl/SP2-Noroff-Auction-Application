@@ -1,6 +1,6 @@
-import { token, myHeaders } from "./utils.js";
-import { listingFormHTML } from "./htmlconst.js";
-import { API_AUCTION_URL, AUCTION_POST_LISTING } from "./api.js";
+import { token, myHeaders } from "../tools/utils.js";
+import { listingFormHTML } from "../html/htmlconst.js";
+import { API_AUCTION_URL, AUCTION_POST_LISTING } from "../api/api.js";
 
 const formContainer = document.getElementById("createListing");
 function formRender() {

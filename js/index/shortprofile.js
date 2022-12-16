@@ -1,8 +1,8 @@
-import { profileFetch } from "./api.js";
-import { shortProfile } from "./htmlconst.js";
-import { logout } from "./logout.js";
-import { userNull } from "./htmlconst.js";
-import { token, userName } from "./utils.js";
+import { profileFetch } from "../api/api.js";
+import { shortProfile } from "../html/htmlconst.js";
+import { logout } from "../api/auth/logout.js";
+import { userNull } from "../html/htmlconst.js";
+import { token, userName } from "../tools/utils.js";
 
 const shortContainer = document.querySelector("#userNav");
 const renderShortProfile = (profile, userName) => {
