@@ -7,38 +7,75 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="./css/styling.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
     <title>Document</title>
   </head>
   <body>
+    <!-- <img src="" type="button" class="btn btn-primary"
+    >
+    Launch demo modal
+  </button> -->
+    <!-- <img
+    src="https://cdn.pixabay.com/photo/2021/08/26/17/08/cadillac-6576666_960_720.jpg"
+    class="card-img px-1 rounded-3" alt=""
+    data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+
     <div class="container py-5">
       <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-8 col-xl-8">
+        <div class="col-md-8 col-lg-8 col-xl-8">
           <div class="card text-black">
             <div class="text-center">
               <h3 class="card-title">${listing.title}</h3>
-              <p class="text-muted mb-4">${listing.tags}</p>
             </div>
             <div
-              id="carouselExampleControls"
+              id="carouselControls"
               class="carousel slide"
               data-bs-ride="carousel"
             >
               <div class="carousel-inner">
-                ${listing.media.map( (image, index) => `
-                <div class="carousel-item ${index == 0 ? `active` : ``}">
-                  <img src="${image}" class="card-img-top carouselImg" alt="" />
+                <div
+                  class="carousel-item d-flex justify-content-center bg-dark rounded-3 active"
+                >
+                  <img
+                    src="https://cdn.pixabay.com/photo/2021/08/26/17/08/cadillac-6576666_960_720.jpg"
+                    class="card-img px-1 rounded-3"
+                    alt=""
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  />>
                 </div>
-                ` )}
+                <div class="carousel-item">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2017/07/05/17/56/american-50s-car-2475424_960_720.jpg"
+                    class="card-img px-1 rounded-3"
+                    alt=""
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  />>
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2017/02/17/20/12/cadillac-2075148_960_720.jpg"
+                    class="card-img-top px-1 rounded-3"
+                    alt=""
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  />>
+                </div>
               </div>
               <button
                 class="carousel-control-prev"
                 type="button"
-                data-bs-target="#carouselExampleControls"
+                data-bs-target="#carouselControls"
                 data-bs-slide="prev"
               >
                 <span
-                  class="carousel-control-prev-icon"
+                  class="carousel-control-prev-icon border border-dark"
                   aria-hidden="true"
                 ></span>
                 <span class="visually-hidden">Previous</span>
@@ -46,90 +83,184 @@
               <button
                 class="carousel-control-next"
                 type="button"
-                data-bs-target="#carouselExampleControls"
+                data-bs-target="#carouselControls"
                 data-bs-slide="next"
               >
                 <span
-                  class="carousel-control-next-icon"
+                  class="carousel-control-next-icon border border-dark"
                   aria-hidden="true"
                 ></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            <div class="card-body">
+            <div class="card-body mt-1 mb-1 bg-light">
               <div>
-                <div class="d-flex justify-content-between">
-                  <span>Created at :</span
-                  ><span
-                    >${createDate.toLocaleDateString( "en-US", options )}</span
-                  >
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Last updated :</span
-                  ><span
-                    >${updateDate.toLocaleDateString( "en-US", options )}</span
-                  >
-                </div>
-                <div class="d-flex justify-content-between">
-                  <span>Auction end:</span
-                  ><span
-                    >${endDate.toLocaleDateString( "en-US", options )}</span
-                  >
-                </div>
-              </div>
-              <div
-                class="d-flex justify-content-between total font-weight-bold mt-4"
-              >
-                <span>Number of bids: </span><span>${listing._count.bids}</span>
-              </div>
-              ${ listing.bids.length > 0 ? `
-              <div
-                class="d-flex justify-content-between total font-weight-bold mt-4"
-              >
-                <span>highest bid: </span
-                ><span>${ listing.bids.at(-1).amount }</span>
-              </div>
-              ` : "" }
-              <form class="row g-3">
-                <div class="col-auto">
-                  <label for="userBid" class="form-label">Your bid</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="userBid"
-                    placeholder="0"
-                  />
-                </div>
-                <div class="col-auto">
-                  <button
-                    type="submit"
-                    class="btn btn-primary mb-3"
-                    id="bidBtn"
-                  >
-                    Place Bid
-                  </button>
-                </div>
-              </form>
-              <div
-                class="d-flex justify-content-between total font-weight-bold mt-4"
-                id="bidSection"
-              >
+                <p class="text-muted mb-4">${listing.tags}</p>
+                <ul class="list-group">
+                  <li class="list-group-item bg-info bg-opacity-10">
+                    <span>Created at : </span
+                    ><span
+                      >${createDate.toLocaleDateString( "en-US", options
+                      )}</span
+                    >
+                  </li>
+                  <li class="list-group-item bg-warning bg-opacity-10">
+                    <span>Last updated : </span
+                    ><span
+                      >${updateDate.toLocaleDateString( "en-US", options
+                      )}</span
+                    >
+                  </li>
+                  <li class="list-group-item bg-danger bg-opacity-10">
+                    <span>Auction ends : </span
+                    ><span
+                      >${endDate.toLocaleDateString( "en-US", options )}</span
+                    >
+                  </li>
+                  <li class="list-group-item bg-info bg-opacity-10">
+                    <span>Number of bids : ${listing._count.bids}</span>
+                  </li>
+                  <li class="list-group-item bg-success bg-opacity-25">
+                    ${ listing.bids.length > 0 ? `
+                    <span
+                      >Highest bid :
+                      <span class="fw-bold"
+                        >${ listing.bids.at(-1).amount }</span
+                      ></span
+                    >
+                    ` : "" }
+                  </li>
+                  <li class="list-group-item">
+                    <form class="row">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <label for="userBid" class="form-label mt-1"
+                            >Your bid :
+                          </label>
+                        </div>
+                        <div class="col">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="userBid"
+                            placeholder="0"
+                          />
+                        </div>
+                        <div class="col">
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="bidBtn"
+                          >
+                            Place Bid
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
                 <div
-                  class="d-flex justify-content-between total font-weight-bold mt-4"
-                  id="bidsContainer"
+                  class="card mt-1 border text-center bg-info bg-opacity-10 rounded"
                 >
-                  ${listing.bids.map( (seller, index, amount, ) => `
-                  <div class="carousel-item ${index == 0 ? `active` : ``}">
-                    <img
-                      src="${image}"
-                      class="card-img-top carouselImg"
-                      alt=""
-                    />
+                  <span class="mt-2 fw-bold">Bid Timeline</span>
+                  <div
+                    class="container-fluid row row-cols-auto m-1 justify-content-center"
+                    id="bidsContainer"
+                  >
+                    ${bidInfo}
                   </div>
-                  ` )}
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div
+              id="carouselControls"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div
+                  class="carousel-item d-flex justify-content-center bg-dark rounded-3 active"
+                >
+                  <img
+                    src="https://cdn.pixabay.com/photo/2021/08/26/17/08/cadillac-6576666_960_720.jpg"
+                    class="card-img px-1 rounded-3"
+                    alt=""
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2017/07/05/17/56/american-50s-car-2475424_960_720.jpg"
+                    class="card-img px-1 rounded-3"
+                    alt=""
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2017/02/17/20/12/cadillac-2075148_960_720.jpg"
+                    class="card-img-top px-1 rounded-3"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselControls"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon border border-dark"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselControls"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon border border-dark"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -137,195 +268,125 @@
   </body>
 </html>
 
-<ul class="list-group">
-  <li class="list-group-item">
-    <span>Created at :</span
-    ><span>${createDate.toLocaleDateString( "en-US", options )}</span>
-  </li>
-  <li class="list-group-item">
-    <span>Last updated :</span
-    ><span>${updateDate.toLocaleDateString( "en-US", options )}</span>
-  </li>
-  <li class="list-group-item">
-    <span>Auction end:</span
-    ><span>${endDate.toLocaleDateString( "en-US", options )}</span>
-  </li>
-  <li class="list-group-item">
-    <div class="d-flex justify-content-between total font-weight-bold mt-4">
-      <span>Number of bids: </span><span>${listing._count.bids}</span>
-    </div>
-    ${ listing.bids.length > 0 ? `
-    <div class="d-flex justify-content-between total font-weight-bold mt-4">
-      <span>highest bid: </span><span>${ listing.bids.at(-1).amount }</span>
-    </div>
-    ` : "" }
-  </li>
-  <li class="list-group-item">
-    <form class="row g-3">
-      <div class="col-auto">
-        <label for="userBid" class="form-label">Your bid</label>
-        <input
-          type="number"
-          class="form-control"
-          id="userBid"
-          placeholder="0"
-        />
-        <button type="submit" class="btn btn-primary mb-3" id="bidBtn">
-          Place Bid
-        </button>
-      </div>
-    </form>
-  </li>
-</ul>
-<!-- DO NOT DELETE YET! -->
-<!-- <div class="d-flex justify-content-between">
-    <span>Created at
-      :</span><span>${createDate.toLocaleDateString(
-        "en-US",
-        options
-      )}</span>
-  </div>
-  <div class="d-flex justify-content-between">
-    <span>Last updated
-      :</span><span>${updateDate.toLocaleDateString(
-        "en-US",
-        options
-      )}</span>
-  </div>
-  <div class="d-flex justify-content-between">
-    <span>Auction
-      end:</span><span>${endDate.toLocaleDateString(
-        "en-US",
-        options
-      )}</span>
-  </div>
-</div>
-<div
-  class="d-flex justify-content-between total font-weight-bold mt-4">
-  <span>Number of bids: </span><span>${listing._count.bids}</span>
-</div>
-${
-  listing.bids.length > 0
-    ? `<div
-  class="d-flex justify-content-between total font-weight-bold mt-4">
-  <span>highest bid: </span><span>${
-    listing.bids.at(-1).amount
-  }</span>
-</div>`
-    : ""
-}
-<form class="row g-3">
-  <div class="col-auto">
-    <label for="userBid" class="form-label">Your bid</label>
-    <input type="number" class="form-control" id="userBid"
-      placeholder="0"> <button type="submit" class="btn btn-primary mb-3"
-      id="bidBtn">Place Bid</button>
-  </div>               
-</form> -->
-
-<div class="container py-5">
+<!-- <div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-md-6 col-lg-8 col-xl-8">
+    <div class="col-md-8 col-lg-8 col-xl-8 ">
       <div class="card text-black">
         <div class="text-center">
-          <h3 class="card-title">${listing.title}</h3>
+          <h3 class="card-title">
+            ${listing.title}</h3>
         </div>
-        <div
-          id="carouselExampleControls"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
+        <div id="carouselControls" class="carousel slide"
+          data-bs-ride="carousel">
           <div class="carousel-inner">
-            ${listing.media.map( (image, index) => `
-            <div class="carousel-item ${index == 0 ? `active` : ``}">
-              <img src="${image}" class="card-img-top carouselImg" alt="" />
-            </div>
-            ` )}
+            ${listing.media.map(
+            (image, index) => `<div class="carousel-item ${
+                            index == 0 ? `active` : ``
+                          }">
+              <img src="${image}"
+                class="card-img-top carouselImg px-1 rounded-3"
+                alt="" />
+            </div>`
+            )}
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <button class="carousel-control-prev"
+            type="button" data-bs-target="#carouselControls"
+            data-bs-slide="prev">
+            <span
+              class="carousel-control-prev-icon border border-dark"
+              aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <button class="carousel-control-next"
+            type="button" data-bs-target="#carouselControls"
+            data-bs-slide="next">
+            <span
+              class="carousel-control-next-icon border border-dark"
+              aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-        <div class="card-body">
+
+        <div class="card-body mt-1 mb-1 bg-light">
           <div>
-            <p class="text-muted mb-4">${listing.tags}</p>
+            <p class="text-muted mb-4">
+              ${listing.tags}</p>
             <ul class="list-group">
-              <li class="list-group-item">
-                <span>Created at :</span
-                ><span
-                  >${createDate.toLocaleDateString( "en-US", options )}</span
-                >
+              <li
+                class="list-group-item bg-info bg-opacity-10">
+                <span>Created at
+                  :
+                </span><span>${createDate.toLocaleDateString(
+                  "en-US",
+                  options
+                  )}</span>
+              </li>
+              <li
+                class="list-group-item bg-warning bg-opacity-10">
+                <span>Last updated
+                  :
+                </span><span>${updateDate.toLocaleDateString(
+                  "en-US",
+                  options
+                  )}</span>
+              </li>
+              <li
+                class="list-group-item bg-danger bg-opacity-10">
+                <span>Auction
+                  ends :
+                </span><span>${endDate.toLocaleDateString(
+                  "en-US",
+                  options
+                  )}</span>
+              </li>
+              <li
+                class="list-group-item bg-info bg-opacity-10">
+                <span>Number of bids :
+                  ${listing._count.bids}</span>
+              </li>
+              <li
+                class="list-group-item bg-success bg-opacity-25">
+                ${
+                listing.bids.length > 0
+                ? `
+                <span>Highest bid :
+                  <span class="fw-bold">${
+                    listing.bids.at(-1).amount
+                    }</span></span>
+                `
+                : ""
+                }
               </li>
               <li class="list-group-item">
-                <span>Last updated :</span
-                ><span
-                  >${updateDate.toLocaleDateString( "en-US", options )}</span
-                >
-              </li>
-              <li class="list-group-item">
-                <span>Auction end:</span
-                ><span>${endDate.toLocaleDateString( "en-US", options )}</span>
-              </li>
-              <li class="list-group-item">
-                <div
-                  class="d-flex justify-content-between total font-weight-bold mt-4"
-                >
-                  <span>Number of bids: </span
-                  ><span>${listing._count.bids}</span>
-                </div>
-                ${ listing.bids.length > 0 ? `
-                <div
-                  class="d-flex justify-content-between total font-weight-bold mt-4"
-                >
-                  <span>highest bid: </span
-                  ><span>${listing.bids.at(-1).amount}</span>
-                </div>
-                ` : "" }
-              </li>
-              <li class="list-group-item">
-                <form class="row g-3">
-                  <div class="col-auto">
-                    <label for="userBid" class="form-label">Your bid</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="userBid"
-                      placeholder="0"
-                    />
-                    <button
-                      type="submit"
-                      class="btn btn-primary mb-3"
-                      id="bidBtn"
-                    >
-                      Place Bid
-                    </button>
+                <form class="row">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <label for="userBid"
+                        class="form-label mt-1">Your bid :
+                      </label>
+                    </div>
+                    <div class="col">
+                      <input type="number"
+                        class="form-control" id="userBid"
+                        placeholder="0">
+                    </div>
+                    <div class="col">
+                      <button type="submit"
+                        class="btn btn-primary"
+                        id="bidBtn">Place
+                        Bid</button>
+                    </div>
                   </div>
                 </form>
               </li>
             </ul>
-            <div class="container-fluid">
-              <div class="container-fluid border text-center">
-                <h6>Bid Timeline</h6>
-              </div>
+            <div
+              class="card mt-1 border text-center bg-info bg-opacity-10 rounded">
+              <span class="mt-2 fw-bold ">Bid
+                Timeline</span>
               <div
                 class="container-fluid row row-cols-auto m-1 justify-content-center"
-                id="bidsContainer"
-              >
+                id="bidsContainer">
                 ${bidInfo}
               </div>
             </div>
@@ -334,22 +395,4 @@ ${
       </div>
     </div>
   </div>
-</div>
-
-<div class="card mb-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img
-        src="${listing.seller.avatar}"
-        class="img-fluid rounded-start sellerImg"
-        alt="Profile image for seller ${listing.seller.name}"
-      />
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Seller: ${listing.seller.name}</h5>
-        <p class="card-text">Auction Wins: ${listing.seller.wins.length}</p>
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->

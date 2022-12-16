@@ -10,6 +10,10 @@
   height: 40vh;
 }
 
-.sellerImg {
+/* .carouselModalImg {
+} */
+
+.sellerImg,
+.profileImg {
   height: 17vh;
 }

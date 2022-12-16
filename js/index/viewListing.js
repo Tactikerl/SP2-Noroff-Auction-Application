@@ -2,6 +2,8 @@ import { dateFormat, dateOptions, myHeaders } from "../tools/utils.js";
 
 import { singleListingHTML, shortSeller } from "../html/htmlconst.js";
 
+import { defaultListingImg, mediaFileRegex } from "../tools/utils.js";
+
 import {
   API_AUCTION_URL,
   AUCTION_BIDS_PARAMS,
@@ -30,6 +32,14 @@ fetch(
 function listingRender(listing) {
   const dates = dateFormat(listing);
   const sellerDisplay = document.getElementById("sellerDisplay");
+
+  if (
+    listing.media == undefined ||
+    listing.media.length == 0 ||
+    !mediaFileRegex.test(listing.media[0])
+  ) {
+    listing.media = [defaultListingImg];
+  }
   sellerDisplay.innerHTML = shortSeller(listing);
   const listingContainer = document.getElementById("listingContainer");
   let bidInfo = ``;

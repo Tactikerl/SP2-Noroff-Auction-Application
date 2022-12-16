@@ -8,12 +8,15 @@
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="./css/styling.css" />
-
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction House Listings</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-light border-bottom border-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/index.html">TAH</a>
         <button
@@ -49,15 +52,15 @@
               aria-label="Search"
               id="searchInput"
             />
-            <!-- <button class="btn btn-outline-success"
-            type="submit">
-            Search
-          </button> -->
           </form>
         </div>
       </div>
     </nav>
-    <div id="userNav"></div>
+    <div class="album py-5 bg-info bg-opacity-10">
+      <div class="container">
+        <div id="userNav" class="row"></div>
+      </div>
+    </div>
     <div class="album py-5 bg-light">
       <div class="container">
         <div
@@ -67,7 +70,7 @@
       </div>
     </div>
     <script defer type="module" src="/js/index/listings.js"></script>
-    <script type="module" src="/js/api/auth/logout.js"></script>
     <script defer type="module" src="/js/index/shortprofile.js"></script>
+    <script type="module" src="/js/api/auth/logout.js"></script>
   </body>
 </html>

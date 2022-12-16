@@ -1,8 +1,4 @@
-import {
-  API_AUCTION_URL,
-  AUCTION_LOGIN,
-  AUCTION_REGISTER,
-} from "../api/api.js";
+import { API_AUCTION_URL, AUCTION_LOGIN, AUCTION_REGISTER } from "../api.js";
 import { loginHTML, registerHTML } from "../../html/htmlconst.js";
 import { myHeaders } from "../../tools/utils.js";
 

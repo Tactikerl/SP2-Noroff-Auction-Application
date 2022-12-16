@@ -1,3 +1,5 @@
+import { defaultProfileImg } from "../tools/utils.js";
+
 export const loginHTML = `
     <form action="" class="row g-3" id="loginForm">
       <div class="card mb-2">
@@ -104,6 +106,7 @@ export function renderProfileHTML(profile, userName) {
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-12 col-xl-4">
             <div class="card" style="border-radius: 15px">
+            
               <div class="card-body text-center">
                 <div class="mt-3 mb-4">
                   <img
@@ -142,56 +145,69 @@ export function renderProfileHTML(profile, userName) {
     </section>`;
 }
 
-export function shortProfile(profile, userName) {
+export function shortProfile(profile) {
   return `
-    <div class="card mt-3 ms-3 mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="${profile.avatar}"
-            class="img-fluid rounded-start"
-            alt="profile image for $[userName]">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Welcome ${userName}</h5>
-            <p class="card-text">
-              You currently have ${profile.credits}
-              credits in your account and have
-              ${profile._count.listings} listings
-              registered
-            </p>
-            <p class="card-text"></p>
-            <div class="col-md-6">
-              <a href="/profile.html"><button
-                  class="btn btn-primary"
-                  id="profileBtn">Profile</button></a>
-            </div>
-            <div class="col-md-6">
-              <button class="btn btn-danger"
-                id="logoutBtn">Logout</button>
-            </div>
-            <div class="col-md-6">
-            <a href="/createlisting.html"><button
-                  class="btn btn-primary"
-                  id="createBtn">Create Listing</button></a>            
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`;
+  <div class="card py-3 px-3">
+  <div class="container">
+  <div class="row align-items-center">
+    <div class="col d-flex justify-content-center">
+      <img src="${profile.avatar}"
+        class="img-fluid rounded-2 profileImg"
+        alt="profile image for ${profile.name}">
+    </div>
+    <div class="col">
+    <h5 class="card-title">Welcome ${profile.name}</h5>
+    <ul class="list-group">
+    <li class="list-group-item">
+      <p class="card-text">Credits available :
+        ${profile.credits}</p>
+    </li>
+    <li class="list-group-item">
+      <p class="card-text">Total listings made :
+        ${profile._count.listings}</p>
+    </li>
+    <li class="list-group-item">
+      <p class="card-text">Auctions won : ${profile.wins.length}</p>
+    </li>
+  </ul>
+    </div>
+    <div class="col">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="/createlisting.html"><button
+              class="btn btn-primary" id="createBtn">Create
+              Listing</button></a>
+        </li>
+        <li class="list-group-item">
+          <a href="/profile.html"><button
+              class="btn btn-primary"
+              id="profileBtn">Profile</button></a>
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-danger "
+            id="logoutBtn">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>`;
 }
 
 export function shortSeller(listing) {
+  if (!listing.seller.avatar) {
+    listing.seller.avatar = defaultProfileImg;
+  }
   return `
-    <div class="container align-items-center">
-      <div class="row align-items-center">        
-        <div class="card col-md-4">
-          <div class="card-body">
+    <div class="container">
+      <div class="row justify-content-center">        
+        <div class="card col-md-4 mt-4 align-items-center bg-light">
+          <div class="card-body bg-light">
+          <h5 class="card-title mb-2 text-center">Seller: ${listing.seller.name}</h5>
           <img src="${listing.seller.avatar}"
-          class="img-fluid rounded sellerImg"
-          alt="profile image for ${listing.seller.name}">
-            <h5 class="card-title">Seller: ${listing.seller.name}</h5>            
-            <p class="card-text">Auction Wins: ${listing.seller.wins.length}</p>                                               
+          class="img-fluid rounded-3 sellerImg border border-info"
+          alt="profile image for ${listing.seller.name}">                        
+            <p class="card-text m-2">Auction Wins: ${listing.seller.wins.length}</p>                                               
           </div>
         </div>
       </div>
@@ -285,7 +301,7 @@ export function singleListingHTML(
   return `
     <div class="container py-5">
       <div class="row justify-content-center">
-          <div class="col-md-6 col-lg-8 col-xl-8">
+          <div class="col-md-8 col-lg-8 col-xl-8 ">
               <div class="card text-black">
                   <div class="text-center">
                       <h3 class="card-title">
@@ -301,8 +317,8 @@ export function singleListingHTML(
                                 index == 0 ? `active` : ``
                               }">
                               <img src="${image}"
-                                  class="card-img-top carouselImg"
-                                  alt="" />
+                                  class="card-img-top carouselImg px-1 rounded-3"
+                                  alt="" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
                           </div>`
                           )}
                       </div>
@@ -327,71 +343,67 @@ export function singleListingHTML(
                               class="visually-hidden">Next</span>
                       </button>
                   </div>
-                  <div class="card-body">
+                  <div class="card-body mt-1 mb-1 bg-light">
                       <div>
                           <p class="text-muted mb-4">
                               ${listing.tags}</p>
                           <ul class="list-group">
-                              <li class="list-group-item">
-                                  <span>Created at
-                                      :</span><span>${createDate.toLocaleDateString(
+                              <li class="list-group-item bg-info bg-opacity-10">
+                                  <span>Created at 
+                                      : </span><span>${createDate.toLocaleDateString(
                                         "en-US",
                                         options
                                       )}</span></li>
-                              <li class="list-group-item">
-                                  <span>Last updated
-                                      :</span><span>${updateDate.toLocaleDateString(
+                              <li class="list-group-item bg-warning bg-opacity-10">
+                                  <span>Last updated 
+                                      : </span><span>${updateDate.toLocaleDateString(
                                         "en-US",
                                         options
                                       )}</span></li>
-                              <li class="list-group-item">
+                              <li class="list-group-item bg-danger bg-opacity-10">
                                   <span>Auction
-                                      end:</span><span>${endDate.toLocaleDateString(
+                                      ends : </span><span>${endDate.toLocaleDateString(
                                         "en-US",
                                         options
                                       )}</span></li>
-                              <li class="list-group-item">
-                                  <div
-                                      class="d-flex justify-content-between total font-weight-bold mt-4">
-                                      <span>Number of bids:
+                              <li class="list-group-item bg-info bg-opacity-10">                                  
+                                      <span>Number of bids : 
                                       ${listing._count.bids}</span>
-                                  </div>
-                                  ${
-                                    listing.bids.length > 0
-                                      ? `<div
-                                      class="d-flex justify-content-between total font-weight-bold mt-4">
-                                      <span>Highest bid:
-                                      <span class="fw-bold">${
-                                        listing.bids.at(-1).amount
-                                      }</span></span>
-                                  </div>`
-                                      : ""
-                                  }
+                              </li>
+                              <li class="list-group-item bg-success bg-opacity-25">
+                                ${
+                                  listing.bids.length > 0
+                                    ? `
+                                    <span>Highest bid :
+                                    <span class="fw-bold">${
+                                      listing.bids.at(-1).amount
+                                    }</span></span>
+                                   `
+                                    : ""
+                                }
                               </li>
                               <li class="list-group-item">
-                                  <form class="row g-3">
-                                      <div class="col-auto">
-                                          <label for="userBid"
-                                              class="form-label">Your
-                                              bid</label>
-                                          <input type="number"
-                                              class="form-control"
-                                              id="userBid"
-                                              placeholder="0">
-                                          <button
-                                              type="submit"
-                                              class="btn btn-primary mb-3 mt-2"
-                                              id="bidBtn">Place
-                                              Bid</button>
-                                      </div>
+                                  <form class="row">
+                                  <div class="row align-items-center">
+                                  <div class="col">
+                                    <label for="userBid" class="form-label mt-1">Your bid :
+                                    </label>
+                                  </div>
+                                  <div class="col">
+                                    <input type="number" class="form-control" id="userBid"
+                                      placeholder="0">
+                                  </div>
+                                  <div class="col">
+                                    <button type="submit" class="btn btn-primary"
+                                      id="bidBtn">Place
+                                      Bid</button>
+                                  </div>
+                                </div>
                                   </form>
                               </li>
                           </ul>
-                          <div class="container-fluid mt-1 rounded">
-                              <div
-                                  class="container-fluid border text-center">
-                                  <h6>Bid Timeline</h6>
-                              </div>
+                          <div class="card mt-1 border text-center bg-info bg-opacity-10 rounded">
+                          <span class="mt-2 fw-bold ">Bid Timeline</span>                              
                               <div class="container-fluid row row-cols-auto m-1 justify-content-center"
                                   id="bidsContainer">
                                   ${bidInfo}
@@ -402,6 +414,59 @@ export function singleListingHTML(
               </div>
           </div>
       </div>
+  </div>
+  <div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="modalCarouselControls"
+      class="carousel slide"
+      data-bs-ride="carousel">
+      <div class="carousel-inner">
+          ${listing.media.map(
+            (image, index) => `<div
+              class="carousel-item ${index == 0 ? `active` : ``}">
+              <img src="${image}"
+                  class="card-img-top carouselImg px-1 rounded-3"
+                  alt="" />
+          </div>`
+          )}
+      </div>
+      <button class="carousel-control-prev"
+          type="button"
+          data-bs-target="#modalCarouselControls"
+          data-bs-slide="prev">
+          <span
+              class="carousel-control-prev-icon border border-dark"
+              aria-hidden="true"></span>
+          <span
+              class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next"
+          type="button"
+          data-bs-target="#modalCarouselControls"
+          data-bs-slide="next">
+          <span
+              class="carousel-control-next-icon border border-dark"
+              aria-hidden="true"></span>
+          <span
+              class="visually-hidden">Next</span>
+      </button>
+  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>`;
 }
 

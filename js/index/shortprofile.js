@@ -15,6 +15,7 @@ profileFetch(renderShortProfile, token, userName);
 const renderNoUser = () => {
   if (!userName) {
     shortContainer.innerHTML = userNull();
+    console.log("heia");
   }
 };
 

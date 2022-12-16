@@ -2,8 +2,8 @@ import { indexListingHTML } from "../html/htmlconst.js";
 import {
   dateFormat,
   dateOptions,
-  // defaultListingImg,
-  // defaultProfileImg,
+  defaultListingImg,
+  mediaFileRegex,
 } from "./utils.js";
 
 const listingsContainer = document.querySelector("#listingsContainer");
@@ -18,7 +18,15 @@ HTMLElement.prototype.clear = clearHTML;
 
 export function renderListings(listings) {
   listingsContainer.clear();
+
   listings.forEach(function (getListings, index) {
+    if (
+      getListings.media == undefined ||
+      getListings.media.length == 0 ||
+      !mediaFileRegex.test(getListings.media[0])
+    ) {
+      getListings.media = [defaultListingImg];
+    }
     const dates = dateFormat(getListings);
     listingsContainer.innerHTML += indexListingHTML(
       getListings,
@@ -28,12 +36,6 @@ export function renderListings(listings) {
       dateOptions,
       index
     );
-    // if (!getListings.seller.avatar) {
-    //   getListings.seller.avatar = defaultProfileImg;
-    // }
-    // if (!getListings.media) {
-    //   getListings.media = defaultListingImg;
-    // }
 
     const parentContainer = document.querySelector(`#itemDscr${index}`);
     const listDscr = document.createElement("span");
