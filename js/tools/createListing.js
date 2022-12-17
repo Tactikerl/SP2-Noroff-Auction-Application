@@ -1,6 +1,7 @@
 import { token, myHeaders } from "../tools/utils.js";
 import { listingFormHTML } from "../html/htmlconst.js";
 import { API_AUCTION_URL, AUCTION_POST_LISTING } from "../api/api.js";
+import { locationProfileCheck } from "../index/shortprofile.js";
 
 const formContainer = document.getElementById("createListing");
 function formRender() {
@@ -51,3 +52,5 @@ function createListing(event) {
         (document.location = `/viewListing.html?listings=${newListing.id}`)
     );
 }
+
+locationProfileCheck(false, true);

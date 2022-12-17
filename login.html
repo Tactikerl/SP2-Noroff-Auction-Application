@@ -11,7 +11,7 @@
     <title>Auction House Login/Register</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-info">
       <div class="container-fluid">
         <a class="navbar-brand" href="/index.html">The Auction House</a>
         <button
@@ -39,39 +39,36 @@
         </div>
       </div>
     </nav>
-    <div class="card mb-3">
-      <div class="card-body">
-        <div
-          class="btn-group"
-          role="group"
-          aria-label="Basic radio toggle button group"
+    <div class="container vh-75 vw-50 py-2">
+      <div
+        class="btn-group py-2"
+        role="group"
+        aria-label="Basic radio toggle button group"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio1"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-outline-primary" for="btnradio1"
+          >Login Form</label
         >
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio1"
-            autocomplete="off"
-            checked
-          />
-          <label class="btn btn-outline-primary" for="btnradio1"
-            >Login Form</label
-          >
-
-          <input
-            type="radio"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio2"
-            autocomplete="off"
-          />
-          <label class="btn btn-outline-primary" for="btnradio2"
-            >Register Form</label
-          >
-        </div>
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio2"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary" for="btnradio2"
+          >Register Form</label
+        >
       </div>
+      <div id="formContainer"></div>
     </div>
-    <div id="formContainer"></div>
     <script defer type="module" src="/js/api/auth/login.js"></script>
     <script defer type="module" src="/js/html/htmlconst.js"></script>
   </body>

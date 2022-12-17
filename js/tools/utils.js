@@ -9,6 +9,7 @@ export const dateOptions = {
 
 export const token = localStorage.getItem("token");
 export const userName = localStorage.getItem("username");
+
 export const loginID = document.querySelector("#userNav");
 
 export function dateFormat(date) {

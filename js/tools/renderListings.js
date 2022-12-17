@@ -6,8 +6,6 @@ import {
   mediaFileRegex,
 } from "./utils.js";
 
-const listingsContainer = document.querySelector("#listingsContainer");
-
 function clearHTML() {
   while (this.hasChildNodes()) {
     this.removeChild(this.lastChild);
@@ -17,6 +15,7 @@ function clearHTML() {
 HTMLElement.prototype.clear = clearHTML;
 
 export function renderListings(listings) {
+  const listingsContainer = document.querySelector("#listingsContainer");
   listingsContainer.clear();
 
   listings.forEach(function (getListings, index) {

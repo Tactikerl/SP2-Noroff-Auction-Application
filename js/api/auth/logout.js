@@ -1,10 +1,11 @@
 export function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("username");
+  localStorage.removeItem("usercredit");
+  localStorage.removeItem("userlistings");
+  localStorage.removeItem("userwins");
   document.location = "/index.html";
 }
-
-// document.getElementById("logoutBtn").addEventListener("click", logout);
 
 function userCheck() {
   const userActive = document.getElementById("logoutBtn");

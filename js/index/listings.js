@@ -5,6 +5,7 @@ import {
 } from "../api/api.js";
 import { renderListings } from "../tools/renderListings.js";
 import { setupSearch } from "../tools/search.js";
+import { locationProfileCheck } from "./shortprofile.js";
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -24,3 +25,5 @@ fetch(
     setupSearch(listings);
   })
   .catch((error) => console.log("error", error));
+
+locationProfileCheck(true, false);

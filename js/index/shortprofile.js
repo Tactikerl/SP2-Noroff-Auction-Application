@@ -1,21 +1,32 @@
 import { profileFetch } from "../api/api.js";
-import { shortProfile } from "../html/htmlconst.js";
+import { shortProfile, navProfile } from "../html/htmlconst.js";
 import { logout } from "../api/auth/logout.js";
 import { userNull } from "../html/htmlconst.js";
 import { token, userName } from "../tools/utils.js";
 
+const navProfileCont = document.querySelector("#navProfile");
+
 const shortContainer = document.querySelector("#userNav");
-const renderShortProfile = (profile, userName) => {
-  shortContainer.innerHTML = shortProfile(profile, userName);
-  document.getElementById("logoutBtn").addEventListener("click", logout);
-};
 
-profileFetch(renderShortProfile, token, userName);
+export function locationProfileCheck(renderShortProfile, renderNavProfile) {
+  let callback = () => {};
+  if (renderShortProfile) {
+    callback = (profile, userName) => {
+      shortContainer.innerHTML = shortProfile(profile, userName);
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+    };
+  }
+  if (renderNavProfile) {
+    callback = (profile, userName) => {
+      navProfileCont.innerHTML = navProfile(profile, userName);
+    };
+  }
+  profileFetch(callback, token, userName);
+}
 
-const renderNoUser = () => {
+export const renderNoUser = () => {
   if (!userName) {
     shortContainer.innerHTML = userNull();
-    console.log("heia");
   }
 };
 

@@ -16,7 +16,7 @@ export const loginHTML = `
               <input type="password" class="form-control"
                   id="userPassword">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 pt-1">
               <button type="button" class="btn btn-primary"
               id="loginBtn">Login</button>
           </div>
@@ -66,130 +66,215 @@ export const registerHTML = `
   </form>`;
 
 export const listingFormHTML = `
-  <form action="" class="row g-3 " id="listingForm">
+    <form action="" class="row g-3 bg-white"
+    id="listingForm">
     <div class="mb-3">
-      <label for="listingName" class="form-label">What are you
-        listing?</label>
-      <input type="text" class="form-control"
-        id="listingTitle" placeholder="Listing Name">
+      <div>
+        <label for="listingName"
+          class="form-label">Title</label>
+        <input type="text" class="form-control"
+          id="listingTitle" placeholder="">
+      </div>
+      <div>
+        <span class="text-muted helpText">Short
+          description of
+          the item.</span>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="itemDescription" class="form-label">Describe
-        your listing</label>
-      <textarea class="form-control" id="itemDescription"
-        rows="3" placeholder="Short and Concise description"></textarea>
+      <div><label for="itemDescription"
+          class="form-label">Description</label>
+        <textarea class="form-control"
+          id="itemDescription" rows="3"
+          placeholder=""></textarea>
+      </div>
+      <div>
+        <span class="text-muted helpText">Please
+          describe your item in full.</span>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="itemTags" class="form-label">Tags</label>
-      <input type="text" class="form-control" id="itemTags"
-         placeholder="Tags">
+      <div>
+        <label for="itemTags"
+          class="form-label">Tags</label>
+        <input type="text" class="form-control"
+          id="itemTags" placeholder="Tags">
+      </div>
+      <div>
+        <span class="text-muted helpText">Please
+          use relevant tags for the item.</span>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="endDate" class="form-label">Auction ends at?</label>
-      <input type="datetime-local" name="endDate" id="endDate">
+      <div>
+        <label for="endDate"
+          class="form-label">Auction
+          end  </label>
+        <input type="datetime-local" name="endDate"
+          id="endDate">
+      </div>
+      <div>
+        <span class="text-muted helpText">Please
+          set desired end date for the auction.</span>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="listingMedia" class="form-label">Link
-        images here(url)</label>
-      <input class="form-control" type="url"
-        id="listingMedia" multiple>
+      <div><label for="listingMedia"
+          class="form-label">Image URLs(Not
+          Required)</label>
+        <input class="form-control" type="url"
+          id="listingMedia" multiple>
+      </div>
+      <div>
+        <span class="text-muted helpText">For multiple
+          images use comma (,) and a space between
+          URLs.</span>
+      </div>
     </div>
     <div class="mb-3">
-    <button type="button" class="btn btn-info" id="publishListing">Publish Listing</button>
+      <div><button type="button" class="btn btn-info"
+          id="publishListing">Publish Listing</button>
+      </div>
+      <div>
+        <span class="text-muted helpText">Please
+          check your listing to see everything is
+          correct.</span>
+      </div>
     </div>
-  </form>`;
+    </form>`;
 
 export function renderProfileHTML(profile, userName) {
   return `
-    <section class="vh-100" style="background-color: #eee">
-      <div class="container-fluid">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-md-12 col-xl-4">
-            <div class="card" style="border-radius: 15px">
-            
-              <div class="card-body text-center">
-                <div class="mt-3 mb-4">
-                  <img
-                    src="${profile.avatar}"
-                    class="rounded-circle img-fluid"
-                    style="width: 100px"
-                  id="userAvatar"/>
+  <section class="vh-50 bg-light">
+    <div class="container py-5 h-100">
+      <div
+        class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-12 col-xl-4">
+          <div class="card rounded-3" >
+            <div class="card-body text-center">
+              <div class="mt-3 mb-4">
+                <img src="${profile.avatar}"
+                  class="rounded-circle img-fluid profileImg" 
+                   />
+              </div>
+              <h4 class="mb-2">${userName}</h4>
+              <button class="btn btn-info" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample">
+                Change Avatar URL
+              </button>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                  <form>
+                    <label for="avatar"
+                      class="form-label"></label>
+                    <input type="url" name="avatar"
+                      id="newAvatarURL" placeholder="URL">
+                    <button
+                      class="btn btn-light btn-outline-primary"
+                      id="avatarUrlBtn">Change</button>
+                  </form>
                 </div>
-                <h4 class="mb-2">${userName}</h4>
-                <p class="text-muted mb-4"><span class="mx-2"></span></p>
-                <div class="col-md-6">
-                    <label for="avatar" class="form-label">Profile
-                     Avatar</label>
-                    <input type="url" name="avatar" id="newAvatarURL" placeholder="URL">
+              </div>
+              <div class=" d-flex justify-content-evenly
+                      text-center mt-5 mb-2">
+                <div>
+                  <p class="mb-2 h5">Credits</p>
+                  <p class="text-muted mb-0">
+                    ${profile.credits}</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-2 h5">Listings</p>
+                  <p class="text-muted mb-0">
+                    ${profile._count.listings}
+                  </p>
                 </div>
                 <div>
-                <button type="button" class="btn btn-primary btn-rounded btn-lg" id="avatarUrlBtn">
-                  Change avatar
-                </button>
-                </div>
-                <div class="d-flex justify-content-between text-center mt-5 mb-2">
-                  <div>
-                    <p class="mb-2 h5">${profile.credits}</p>
-                    <p class="text-muted mb-0">Credits Balance</p>
-                  </div>
-                  <div class="px-3">
-                    <p class="mb-2 h5">${profile._count.listings}</p>
-                    <p class="text-muted mb-0">Amount of Listings</p>
-                  </div>                  
+                  <p class="mb-2 h5">Won</p>
+                  <p class="text-muted mb-0">
+                    ${profile.wins.length}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>`;
+    </div>
+  </section>
+  <section class="album container py-5 " >
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="listingsContainer">
+  </div>
+  </section>`;
+}
+
+export function navProfile(profile, userName) {
+  return `  
+<li class="nav-item px-1">
+            <span>Hello, <span class="fw-bold">${userName}</span>!
+            </span>
+          </li>
+          <li class="nav-item px-1">
+            <span>Credits ${profile.credits}</span>
+          </li>
+          <li class="nav-item px-1">
+            <span>Listings
+              ${profile._count.listings}</span>
+          </li>
+          <li class="nav-item px-1">
+            <span>Won
+              ${profile.wins.length}</span>
+          </li>`;
 }
 
 export function shortProfile(profile) {
   return `
   <div class="card py-3 px-3">
   <div class="container">
-  <div class="row align-items-center">
-    <div class="col d-flex justify-content-center">
-      <img src="${profile.avatar}"
-        class="img-fluid rounded-2 profileImg"
-        alt="profile image for ${profile.name}">
+    <div class="row align-items-center">
+      <div class="col d-flex justify-content-center">
+        <img src="${profile.avatar}"
+          class="img-fluid rounded-2 profileImg"
+          alt="profile image for ${profile.name}">
+      </div>
+      <div class="col">
+        <h5 class="card-title">Hello, ${profile.name}</h5>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <p class="card-text">Credits :
+              ${profile.credits}</p>
+          </li>
+          <li class="list-group-item">
+            <p class="card-text">Listings :
+              ${profile._count.listings}</p>
+          </li>
+          <li class="list-group-item">
+            <p class="card-text">Won :
+              ${profile.wins.length}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <a href="/createlisting.html"><button
+                class="btn btn-info"
+                id="createBtn">Create
+                Listing</button></a>
+          </li>
+          <li class="list-group-item">
+            <a href="/profile.html"><button
+                class="btn btn-info"
+                id="profileBtn">Profile</button></a>
+          </li>
+          <li class="list-group-item">
+            <button class="btn btn-danger "
+              id="logoutBtn">Logout</button>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="col">
-    <h5 class="card-title">Welcome ${profile.name}</h5>
-    <ul class="list-group">
-    <li class="list-group-item">
-      <p class="card-text">Credits available :
-        ${profile.credits}</p>
-    </li>
-    <li class="list-group-item">
-      <p class="card-text">Total listings made :
-        ${profile._count.listings}</p>
-    </li>
-    <li class="list-group-item">
-      <p class="card-text">Auctions won : ${profile.wins.length}</p>
-    </li>
-  </ul>
-    </div>
-    <div class="col">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <a href="/createlisting.html"><button
-              class="btn btn-primary" id="createBtn">Create
-              Listing</button></a>
-        </li>
-        <li class="list-group-item">
-          <a href="/profile.html"><button
-              class="btn btn-primary"
-              id="profileBtn">Profile</button></a>
-        </li>
-        <li class="list-group-item">
-          <button class="btn btn-danger "
-            id="logoutBtn">Logout</button>
-        </li>
-      </ul>
-    </div>
-  </div>
   </div>
 </div>`;
 }
@@ -236,43 +321,24 @@ export function indexListingHTML(
                           getListings.title
                         }</h5>                            
                             <p class="card-text text-truncate"
-                                id='itemDscr${index}'></p>
-                            <div class="card-body">
-                                <ul
-                                    class="list-group list-group-flush">
-                                    <li
-                                        class="list-group-item">
-                                        <span>Created at:
-                                            ${createDate.toLocaleDateString(
-                                              "en-US",
-                                              options
-                                            )}</span>
-                                        <span>By
-                                            ${getListings.seller.name}</span>
-                                    </li>
-                                    <li
-                                        class="list-group-item">
-                                        Last updated:
-                                        ${updateDate.toLocaleDateString(
-                                          "en-US",
-                                          options
-                                        )}
-                                    </li>
-                                    <li
-                                        class="list-group-item">
-                                        Ends at:
+                                id='itemDscr${index}'></p>           
+                                    <p
+                                        class=" mb-0">
+                                        <span class="fw-bold">Ends at</span>:
                                         ${endDate.toLocaleDateString(
                                           "en-US",
                                           options
                                         )}
-                                    </li>
-                                    <li
-                                        class="list-group-item">
-                                        Number of bids:
-                                        ${getListings._count.bids}
-                                    </li>
-                                </ul>
-                            </div>
+                                    </p>
+                                    ${
+                                      getListings._count
+                                        ? `<p
+                                        class="">
+                                        <span class="fw-bold">Number of bids</span>:
+                                        <span class="badge text-bg-info">${getListings._count.bids}</span>
+                                    </p>`
+                                        : ""
+                                    }
                             <div
                                 class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
@@ -472,31 +538,32 @@ export function singleListingHTML(
 
 export function userNull() {
   return `
-    <div class="card mb-3" style="max-width: 540px;">
-      <div class="row g-0">
-          <div class="col-md-4">
-              <img src="https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"
-                  class="img-fluid rounded-start"
-                  alt="profile image for $[userName]">
-          </div>
-          <div class="col-md-8">
-              <div class="card-body">
-                  <h5 class="card-title">Welcome!
-                  </h5>
-                  <p class="card-text">
-                      It seems that you are not logged in. If
-                      you would like to make bids on the
-                      listings, please log in or make an
-                      account by pressing the button
-                      underneath
-                  </p>
-                  <div class="col-md-6">
-                      <a href="/login.html"><button
-                              class="btn btn-primary"
-                              id="profileBtn">Login/Register</button></a>
-                  </div>
-              </div>
-          </div>
+  <div class="container d-flex justify-content-center">
+  <div class="card mb-3 col-lg-6">
+    <div class="row g-0">
+      <div
+        class="col-md-4 d-flex align-items-center justify-content-center py-2">
+        <img
+          src="https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"
+          class="img-fluid rounded-circle profileImg"
+          alt="default profile image for guest user">
       </div>
-    </div>`;
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Hello!</h5>
+          <p class="card-text">It seems that you are not
+            logged in. Please log in to make bids or make
+            an
+            account by pressing the button
+            underneath.</p>
+          <div class="">
+            <a href="/login.html"><button
+                class="btn btn-primary"
+                id="profileBtn">Login/Register</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`;
 }

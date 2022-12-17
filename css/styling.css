@@ -15,5 +15,11 @@
 
 .sellerImg,
 .profileImg {
-  height: 17vh;
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.helpText {
+  font-size: small;
 }

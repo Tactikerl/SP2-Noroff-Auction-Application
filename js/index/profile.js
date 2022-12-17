@@ -2,6 +2,7 @@ import { renderProfileHTML } from "../html/htmlconst.js";
 import { profileFetch } from "../api/api.js";
 
 import { token, userName, myHeaders } from "../tools/utils.js";
+import { renderListings } from "../tools/renderListings.js";
 
 const renderProfile = (profile, userName) => {
   const profileContainer = document.getElementById("profileContainer");
@@ -9,6 +10,7 @@ const renderProfile = (profile, userName) => {
   document
     .getElementById("avatarUrlBtn")
     .addEventListener("click", changeAvatarURL);
+  renderListings(profile.listings);
 };
 
 profileFetch(renderProfile, token, userName);

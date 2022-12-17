@@ -28,7 +28,10 @@ export function profileFetch(callback, token, userName) {
     headers: myHeaders,
   };
 
-  fetch(`${API_AUCTION_URL}${AUCTION_PROFILE}/${userName}`, requestOptions)
+  fetch(
+    `${API_AUCTION_URL}${AUCTION_PROFILE}/${userName}?_listings=true`,
+    requestOptions
+  )
     .then((response) => response.json())
     .then((profile) => {
       callback(profile, userName);
