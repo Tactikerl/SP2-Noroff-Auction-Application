@@ -4,7 +4,9 @@ export function logout() {
   localStorage.removeItem("usercredit");
   localStorage.removeItem("userlistings");
   localStorage.removeItem("userwins");
-  document.location = "../index.html";
+
+  const frontPage = document.querySelector(".navbar-brand").href;
+  document.location = frontPage;
 }
 
 export function userCheck() {
