@@ -1,12 +1,25 @@
-import { dateFormat, dateOptions, myHeaders } from "./utils.js";
+import {
+  dateFormat,
+  dateOptions,
+  myHeaders,
+  userName,
+} from "../tools/utils.js";
 
-import { singleListingHTML, shortSeller } from "./htmlconst.js";
+import { singleListingHTML } from "../html/htmlconst.js";
+
+import { defaultListingImg, mediaFileRegex } from "../tools/utils.js";
 
 import {
   API_AUCTION_URL,
   AUCTION_BIDS_PARAMS,
   AUCTION_LISTINGS,
-} from "./api.js";
+} from "../api/api.js";
+
+import { locationProfileCheck } from "./shortprofile.js";
+
+if (!userName) {
+  window.location = "/login/index.html";
+}
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 const listingID = urlSearchParams.get("listings");
@@ -29,39 +42,52 @@ fetch(
 
 function listingRender(listing) {
   const dates = dateFormat(listing);
-  const sellerDisplay = document.getElementById("sellerDisplay");
-  sellerDisplay.innerHTML = shortSeller(listing);
+
+  if (
+    listing.media == undefined ||
+    listing.media.length == 0 ||
+    !mediaFileRegex.test(listing.media[0])
+  ) {
+    listing.media = [defaultListingImg];
+  }
+
   const listingContainer = document.getElementById("listingContainer");
   let bidInfo = ``;
-  listing.bids.forEach(function (bids, index) {
-    const dates = dateFormat(bids);
-    const bidsHTML = `<div class="col-md-4">
-    <ul id="bidNmbr${index}">
-      <li>
-        <span>bidder: ${bids.bidderName}</span>
-      </li>
-      <li>
-        <span>amount: ${bids.amount}</span>
-      </li>      
-      <li>
-        <span>time of bid: ${dates.createDate.toLocaleDateString(
-          "en-US",
-          dateOptions
-        )}</span>
-      </li>
-    </ul>
-  </div>`;
-    bidInfo += bidsHTML;
-  });
+  listing.bids
+    .sort((a, b) => a.amount - b.amount)
+    .forEach(function (bids, index) {
+      const dates = dateFormat(bids);
+      bidInfo += `
+    <div class="" id="bidNmbr${index}">
+    <p class=""><span class="fw-semibold">Bidder</span> :
+            ${bids.bidderName}</p>
+    <p class=""><span class="fw-semibold">Bid Amount</span> :
+            ${bids.amount}</p>
+    <p class=""><span class="fw-semibold">Time of bid</span> :
+            ${dates.createDate.toLocaleDateString("en-US", dateOptions)}</p>
+            <hr>
+  </div>
+  `;
+    });
   listingContainer.innerHTML = singleListingHTML(
     listing,
-    dates.createDate,
-    dates.updateDate,
     dates.endDate,
     dateOptions,
+
     bidInfo
   );
+
   document.getElementById("bidBtn").addEventListener("click", placeBid);
+
+  if (listing.media.length > 1) {
+    const myCollapseEl = document.querySelector("#listingCarousel");
+    const myCarouselEl = document.querySelector("#modalImg");
+    const carousel =
+      window.bootstrap.Carousel.getOrCreateInstance(myCarouselEl);
+    myCollapseEl.addEventListener("slid.bs.carousel", (event) => {
+      carousel.to(event.to);
+    });
+  }
 }
 
 function createBid(userBid) {
@@ -96,3 +122,5 @@ function placeBid(event) {
   }
   createBid(userBid);
 }
+
+locationProfileCheck(true, false);

@@ -1,0 +1,32 @@
+.imgForm {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.carouselImg {
+  object-fit: cover;
+  width: 100%;
+  height: 40vh;
+}
+
+.profileImg {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+.sellerImg {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
+
+.helpText {
+  font-size: small;
+}
+
+.modalImg {
+  height: calc(100vh - 200px);
+  width: 100%;
+  object-fit: contain;
+}

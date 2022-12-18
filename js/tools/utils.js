@@ -9,6 +9,7 @@ export const dateOptions = {
 
 export const token = localStorage.getItem("token");
 export const userName = localStorage.getItem("username");
+
 export const loginID = document.querySelector("#userNav");
 
 export function dateFormat(date) {
@@ -27,3 +28,13 @@ export function sortListings(listings) {
     (a, b) => new Date(b.created) - new Date(a.created)
   );
 }
+
+export const mediaFileRegex = new RegExp(
+  /[^\s]+(.*?).(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/
+);
+
+export const defaultProfileImg =
+  "https://st3.depositphotos.com/1767687/16607/v/450/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg";
+
+export const defaultListingImg =
+  "https://dummyimage.com/600x400/000/fff.png&text=No+Images+Available";
