@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet"
+    href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <script defer
+    src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+    <title>Auction House Login/Register</title>
+    <script type="module" crossorigin src="/assets/login.7a02d002.js"></script>
+    <link
+      rel="modulepreload"
+      crossorigin
+      href="/assets/htmlconst.66b18a18.js"
+    />
+    <link rel="stylesheet" href="/assets/htmlconst.7b05f7c8.css" />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-info">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">The Auction House</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Listings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href=""
+                >Login/Register</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container vh-75 vw-50 py-2 col-sm-6 col-md-6 col-lg-4">
+      <div
+        class="btn-group py-2 d-flex justify-content-center mx-5"
+        role="group"
+        aria-label="Basic radio toggle button group"
+      >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio1"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-outline-primary" for="btnradio1"
+          >Login Form</label
+        >
+        <input
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="btnradio2"
+          autocomplete="off"
+        />
+        <label class="btn btn-outline-primary" for="btnradio2"
+          >Register Form</label
+        >
+      </div>
+      <div id="formContainer"></div>
+    </div>
+
+    <!-- <script defer type="module"
+    src="/js/api/auth/login.js"></script>
+  <script defer type="module"
+    src="/js/html/htmlconst.js"></script> -->
+  </body>
+</html>
