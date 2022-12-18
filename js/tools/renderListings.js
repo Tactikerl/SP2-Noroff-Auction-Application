@@ -14,7 +14,7 @@ function clearHTML() {
 
 HTMLElement.prototype.clear = clearHTML;
 
-export function renderListings(listings) {
+export function renderListings(listings, isSubfolder) {
   const listingsContainer = document.querySelector("#listingsContainer");
   listingsContainer.clear();
 
@@ -33,7 +33,8 @@ export function renderListings(listings) {
       dates.updateDate,
       dates.endDate,
       dateOptions,
-      index
+      index,
+      isSubfolder
     );
 
     const parentContainer = document.querySelector(`#itemDscr${index}`);

@@ -260,14 +260,15 @@ export function indexListingHTML(
   updateDate,
   endDate,
   options,
-  index
+  index,
+  isSubfolder
 ) {
   return `  
                 <div class="col">
                     <div class="card shadow-sm">
-                        <a href="/listing/index.html?listings=${
-                          getListings.id
-                        }"><img
+                        <a href="${
+                          isSubfolder ? "." : ""
+                        }./listing/index.html?listings=${getListings.id}"><img
                                 src="${getListings.media[0]}"
                                 class="img-fluid img-thumbnail imgForm"
                                 alt="..."></a>                        
@@ -297,9 +298,11 @@ export function indexListingHTML(
                             <div
                                 class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="/viewListing.html?listings=${
-                                      getListings.id
-                                    }"
+                                    <a href="${
+                                      isSubfolder ? "." : ""
+                                    }./listing/index.html?listings=${
+    getListings.id
+  }"
                                         class="card-link"><button
                                             type="button"
                                             class="btn btn-sm btn-outline-secondary">View</button></a>
@@ -522,7 +525,7 @@ export function userNull() {
             account by pressing the button
             underneath.</p>
           <div class="">
-            <a href="/login/index.html"><button
+            <a href="./login/index.html"><button
                 class="btn btn-primary"
                 id="profileBtn">Login/Register</button></a>
           </div>

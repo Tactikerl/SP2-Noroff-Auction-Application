@@ -4,7 +4,7 @@ export function logout() {
   localStorage.removeItem("usercredit");
   localStorage.removeItem("userlistings");
   localStorage.removeItem("userwins");
-  document.location = "/index.html";
+  document.location = "../index.html";
 }
 
 export function userCheck() {

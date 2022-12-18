@@ -5,10 +5,10 @@ import {
   A as f,
   v as p,
   h,
-} from "./htmlconst.66b18a18.js";
-import { l as I } from "./shortprofile.d1ddc3e8.js";
-import "./logout.8d70a663.js";
-g || (window.location = "/login/index.html");
+} from "./htmlconst.3f9a2e96.js";
+import { l as I } from "./shortprofile.481daaa8.js";
+import "./logout.e52ab6e3.js";
+g || (window.location = "../login/index.html");
 const l = document.getElementById("createListing");
 function v() {
   a
@@ -40,6 +40,8 @@ function y(d) {
     c = { method: "POST", headers: h, body: m };
   fetch(`${f}${p}`, c)
     .then((e) => e.json())
-    .then((e) => (document.location = `/listing/index.html?listings=${e.id}`));
+    .then(
+      (e) => (document.location = `../listing/index.html?listings=${e.id}`)
+    );
 }
 I(!0);

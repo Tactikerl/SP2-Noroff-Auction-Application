@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/SP2-Noroff-Auction-Application/",
   build: {
     rollupOptions: {
       input: {

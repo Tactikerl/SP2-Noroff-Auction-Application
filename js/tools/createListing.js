@@ -4,7 +4,7 @@ import { API_AUCTION_URL, AUCTION_POST_LISTING } from "../api/api.js";
 import { locationProfileCheck } from "../index/shortprofile.js";
 
 if (!userName) {
-  window.location = "/login/index.html";
+  window.location = "../login/index.html";
 }
 
 const formContainer = document.getElementById("createListing");
@@ -59,7 +59,7 @@ function createListing(event) {
     .then((response) => response.json())
     .then(
       (newListing) =>
-        (document.location = `/listing/index.html?listings=${newListing.id}`)
+        (document.location = `../listing/index.html?listings=${newListing.id}`)
     );
 }
 

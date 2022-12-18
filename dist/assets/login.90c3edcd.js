@@ -5,7 +5,7 @@ import {
   j as E,
   k as I,
   h as i,
-} from "./htmlconst.66b18a18.js";
+} from "./htmlconst.3f9a2e96.js";
 const c = document.querySelector("#formContainer");
 c.innerHTML = d;
 document.getElementById("btnradio1").addEventListener("click", () => {
@@ -30,7 +30,8 @@ function l(o, n) {
       const r = e.accessToken;
       localStorage.setItem("token", r);
       const a = e.name;
-      localStorage.setItem("username", a), (document.location = "/index.html");
+      localStorage.setItem("username", a),
+        (document.location = "../index.html");
     })
     .catch((e) => console.log("error", e));
 }

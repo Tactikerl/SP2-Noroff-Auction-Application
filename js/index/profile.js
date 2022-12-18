@@ -6,7 +6,7 @@ import { renderListings } from "../tools/renderListings.js";
 import { userCheck } from "../api/auth/logout.js";
 
 if (!userName) {
-  window.location = "/login/index.html";
+  window.location = "../login/index.html";
 }
 const renderProfile = (profile, userName) => {
   const profileContainer = document.getElementById("profileContainer");
@@ -15,7 +15,7 @@ const renderProfile = (profile, userName) => {
     .getElementById("avatarUrlBtn")
     .addEventListener("click", changeAvatarURL);
   userCheck();
-  renderListings(profile.listings);
+  renderListings(profile.listings, true);
 };
 
 if (userName) {

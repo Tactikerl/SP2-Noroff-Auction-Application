@@ -9,10 +9,10 @@ import {
   f as r,
   s as w,
   h as m,
-} from "./htmlconst.66b18a18.js";
-import { l as S } from "./shortprofile.d1ddc3e8.js";
-import "./logout.8d70a663.js";
-p || (window.location = "/login/index.html");
+} from "./htmlconst.3f9a2e96.js";
+import { l as S } from "./shortprofile.481daaa8.js";
+import "./logout.e52ab6e3.js";
+p || (window.location = "../login/index.html");
 const B = new URLSearchParams(window.location.search),
   u = B.get("listings"),
   C = { method: "GET", headers: m };

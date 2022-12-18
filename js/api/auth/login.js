@@ -38,7 +38,7 @@ export function login(userEmail, userPassword) {
       localStorage.setItem("token", token);
       const userName = result.name;
       localStorage.setItem("username", userName);
-      document.location = "/index.html";
+      document.location = "../index.html";
     })
     .catch((error) => console.log("error", error));
 }

@@ -23,7 +23,7 @@ export function locationProfileCheck(renderNavProfile) {
   }
   profileFetch(callback, token, userName);
 }
-console.log(userName);
+
 export const renderNoUser = () => {
   if (!userName && shortContainer) {
     shortContainer.innerHTML = userNull();
