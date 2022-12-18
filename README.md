@@ -1,11 +1,11 @@
 # SP2 Noroff Action House 
 
-Simple overview of use/purpose.
+
 Application for web based auction house.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+
 
 This application is developed to emulate a fictional auction house.
 Users can register with a @stud.noroff email address to create listings with fictional items and bid on listings from other users.
