@@ -1,7 +1,11 @@
-import { token, myHeaders } from "../tools/utils.js";
+import { token, myHeaders, userName } from "../tools/utils.js";
 import { listingFormHTML } from "../html/htmlconst.js";
 import { API_AUCTION_URL, AUCTION_POST_LISTING } from "../api/api.js";
 import { locationProfileCheck } from "../index/shortprofile.js";
+
+if (!userName) {
+  window.location = "./login.html";
+}
 
 const formContainer = document.getElementById("createListing");
 function formRender() {
@@ -53,4 +57,4 @@ function createListing(event) {
     );
 }
 
-locationProfileCheck(false, true);
+locationProfileCheck(true, false);

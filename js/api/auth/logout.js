@@ -7,11 +7,10 @@ export function logout() {
   document.location = "/index.html";
 }
 
-function userCheck() {
+export function userCheck() {
   const userActive = document.getElementById("logoutBtn");
 
   if (userActive) {
     userActive.addEventListener("click", logout);
   }
 }
-userCheck();

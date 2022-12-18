@@ -10,16 +10,23 @@
   height: 40vh;
 }
 
-/* .carouselModalImg {
-} */
-
-.sellerImg,
 .profileImg {
   height: 100px;
   width: 100px;
   object-fit: cover;
 }
+.sellerImg {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
 
 .helpText {
   font-size: small;
+}
+
+.modalImg {
+  height: calc(100vh - 200px);
+  width: 100%;
+  object-fit: contain;
 }

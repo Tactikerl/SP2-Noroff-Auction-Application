@@ -4,20 +4,20 @@ export const loginHTML = `
     <form action="" class="row g-3" id="loginForm">
       <div class="card mb-2">
         <div class="card-body">
-          <div class="col-md-6">
+          <div class="">
               <label for="userEmail"
                   class="form-label">Email</label>
               <input type="email" class="form-control"
                   id="userEmail">
           </div>
-          <div class="col-md-6">
+          <div class="">
               <label for="userPassword"
                   class="form-label">Password</label>
               <input type="password" class="form-control"
                   id="userPassword">
           </div>
           <div class="col-md-6 pt-1">
-              <button type="button" class="btn btn-primary"
+              <button type="button" class="btn btn-info mt-2"
               id="loginBtn">Login</button>
           </div>
         </div>
@@ -28,37 +28,37 @@ export const registerHTML = `
   <form action="" class="row g-3" id="registerForm">
   <div class="card mb-2">
     <div class="card-body">
-      <div class="col-md-6">
+      <div class="">
           <label for="newUserName"
               class="form-label">Username (Case sensitive)</label>
           <input type="text" class="form-control"
               id="newUserName">
       </div>
-      <div class="col-md-6">
+      <div class="">
           <label for="newUserEmail"
               class="form-label">Email</label>
           <input type="email" class="form-control"
               id="newUserEmail">
       </div>
-      <div class="col-md-6">
+      <div class="">
           <label for="userPassword"
               class="form-label">Password (Case sensitive)</label>
           <input type="password" class="form-control"
               id="newUserPassword">
       </div>
-      <div class="col-md-6">
+      <div class="">
           <label for="repeatPassword"
               class="form-label">Repeat Password</label>
           <input type="password" class="form-control"
               id="repeatPassword">
       </div>
-      <div class="col-md-6">
+      <div class="">
           <label for="avatar" class="form-label">Profile
               Avatar</label>
-          <input type="url" name="avatar" id="newUserAvatar" placeholder="URL">
+          <input type="url" class="my-3" name="avatar" id="newUserAvatar" placeholder="URL">
       </div>
       <div class="col-md-6">
-        <button type="button" class="btn btn-primary"
+        <button type="button" class="btn btn-info"
         id="registerBtn">Create Profile</button>
         </div>
         </div>
@@ -165,7 +165,7 @@ export function renderProfileHTML(profile, userName) {
                 aria-controls="collapseExample">
                 Change Avatar URL
               </button>
-              <div class="collapse" id="collapseExample">
+              <div class="collapse mt-2" id="collapseExample">
                 <div class="card card-body">
                   <form>
                     <label for="avatar"
@@ -197,6 +197,8 @@ export function renderProfileHTML(profile, userName) {
                     ${profile.wins.length}</p>
                 </div>
               </div>
+              <div><button class="btn btn-danger "
+              id="logoutBtn">Logout</button></div> 
             </div>
           </div>
         </div>
@@ -225,58 +227,11 @@ export function navProfile(profile, userName) {
           <li class="nav-item px-1">
             <span>Won
               ${profile.wins.length}</span>
-          </li>`;
-}
-
-export function shortProfile(profile) {
-  return `
-  <div class="card py-3 px-3">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col d-flex justify-content-center">
-        <img src="${profile.avatar}"
-          class="img-fluid rounded-2 profileImg"
-          alt="profile image for ${profile.name}">
-      </div>
-      <div class="col">
-        <h5 class="card-title">Hello, ${profile.name}</h5>
-        <ul class="list-group">
-          <li class="list-group-item">
-            <p class="card-text">Credits :
-              ${profile.credits}</p>
           </li>
-          <li class="list-group-item">
-            <p class="card-text">Listings :
-              ${profile._count.listings}</p>
-          </li>
-          <li class="list-group-item">
-            <p class="card-text">Won :
-              ${profile.wins.length}</p>
-          </li>
-        </ul>
-      </div>
-      <div class="col">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <a href="/createlisting.html"><button
-                class="btn btn-info"
-                id="createBtn">Create
-                Listing</button></a>
-          </li>
-          <li class="list-group-item">
-            <a href="/profile.html"><button
-                class="btn btn-info"
-                id="profileBtn">Profile</button></a>
-          </li>
-          <li class="list-group-item">
-            <button class="btn btn-danger "
+          <li class="nav-item px-1">
+          <button class="btn btn-danger btn-sm"
               id="logoutBtn">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>`;
+          </li>`;
 }
 
 export function shortSeller(listing) {
@@ -356,41 +311,176 @@ export function indexListingHTML(
             `;
 }
 
-export function singleListingHTML(
-  listing,
-  createDate,
-  updateDate,
-  endDate,
-  options,
-  bidInfo
-) {
+export function singleListingHTML(listing, endDate, options, bidInfo) {
   return `
-    <div class="container py-5">
-      <div class="row justify-content-center">
-          <div class="col-md-8 col-lg-8 col-xl-8 ">
-              <div class="card text-black">
-                  <div class="text-center">
-                      <h3 class="card-title">
-                          ${listing.title}</h3>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-8 col-xl-8 ">
+        <div class="card text-black">
+          <div class="text-center">
+            <h3 class="card-title">
+              ${listing.title}</h3>
+          </div>
+          ${
+            listing.media.length > 1
+              ? renderCarousel(listing, "listingCarousel")
+              : `<img src="${listing.media[0]}"
+            class="card-img-top carouselImg px-1 rounded-3"
+            alt="" data-bs-toggle="modal"
+            data-bs-target="#exampleModal" />`
+          }
+          
+          <div class="card-body mt-1 mb-1">
+          <div class="d-flex align-items-center">                
+                <div class="">
+                  <img src="${listing.seller.avatar}"
+                  class="img-fluid rounded-3 sellerImg rounded-circle "
+                  alt="profile image for ${listing.seller.name}">
+                </div>
+                <div class="ms-2">
+                  <span class="fw-bold ">Seller</span> :<br> ${
+                    listing.seller.name
+                  }
+                </div>
+                <div class="ms-3 align-self-start">
+                <span class="fw-bold">Wins</span>  : ${
+                  listing.seller.wins.length
+                }
+                </div>
+              </div>
+            <div>
+              <p class="text-muted mb-4">
+                ${listing.tags}
+              </p>
+              <p>${listing.description}
+              </p>
+              
+              <div class="">
+                <p>
+                  <span class="fw-semibold">Auction
+                    ends</span> :
+                  ${endDate.toLocaleDateString("en-US", options)}
+                </p>
+              </div>
+              <div class="">
+                <p>
+                  <span class="fw-semibold">Number of bids :
+                    ${listing._count.bids}</span>
+                </p>
+              </div>
+              <div class="">
+                <p>
+                  ${
+                    listing.bids.length > 0
+                      ? `
+                  <span class="fw-semibold">Highest
+                    bid</span> :
+                  <span class="fw-bold">${listing.bids.at(-1).amount}</span>
+                  `
+                      : ""
+                  }
+                </p>
+              </div>
+              <div class="">
+                <form class="row">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <label for="userBid"
+                        class="form-label mt-1"><span
+                          class="fw-semibold">Your
+                          bid</span> :
+                      </label>
+                    </div>
+                    <div class="col">
+                      <input type="number"
+                        class="form-control" id="userBid"
+                        placeholder="0">
+                    </div>
+                    <div class="col">
+                      <button type="submit"
+                        class="btn btn-info"
+                        id="bidBtn">Place
+                        Bid</button>
+                    </div>
                   </div>
-                  <div id="carouselControls"
+                </form>
+              </div>
+              <div class=" mt-1  text-center pt-5">
+                <h4 class="mt-2 fw-semibold ">Bid
+                  Timeline</h4>
+                <hr>
+                <div
+                  class="container-fluid row row-cols-auto m-1 justify-content-center"
+                  id="bidsContainer">
+                  ${bidInfo}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5"
+              id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ${
+              listing.media.length > 1
+                ? renderCarousel(listing, "modalImg", true)
+                : `<img src="${listing.media[0]}"
+              class="card-img-top modalImg px-1 rounded-3"
+              alt="" />`
+            }
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCarousel(listing, carouselId, modalActive) {
+  return `
+  <div id="${carouselId}"
                       class="carousel slide"
                       data-bs-ride="carousel">
                       <div class="carousel-inner">
-                          ${listing.media.map(
-                            (image, index) => `<div
+                          ${listing.media
+                            .map(
+                              (image, index) => `<div
                               class="carousel-item ${
                                 index == 0 ? `active` : ``
                               }">
                               <img src="${image}"
-                                  class="card-img-top carouselImg px-1 rounded-3"
-                                  alt="" data-bs-toggle="modal" data-bs-target="#exampleModal"/>
+                                  class="card-img-top ${
+                                    modalActive ? "modalImg" : "carouselImg"
+                                  } px-1 rounded-3"
+                                  alt="" ${
+                                    modalActive
+                                      ? ""
+                                      : `data-bs-toggle="modal" data-bs-target="#exampleModal"`
+                                  }/>
                           </div>`
-                          )}
+                            )
+                            .join("")}
                       </div>
                       <button class="carousel-control-prev"
                           type="button"
-                          data-bs-target="#carouselControls"
+                          data-bs-target="#${carouselId}"
                           data-bs-slide="prev">
                           <span
                               class="carousel-control-prev-icon border border-dark"
@@ -400,7 +490,7 @@ export function singleListingHTML(
                       </button>
                       <button class="carousel-control-next"
                           type="button"
-                          data-bs-target="#carouselControls"
+                          data-bs-target="#${carouselId}"
                           data-bs-slide="next">
                           <span
                               class="carousel-control-next-icon border border-dark"
@@ -408,132 +498,7 @@ export function singleListingHTML(
                           <span
                               class="visually-hidden">Next</span>
                       </button>
-                  </div>
-                  <div class="card-body mt-1 mb-1 bg-light">
-                      <div>
-                          <p class="text-muted mb-4">
-                              ${listing.tags}</p>
-                          <ul class="list-group">
-                              <li class="list-group-item bg-info bg-opacity-10">
-                                  <span>Created at 
-                                      : </span><span>${createDate.toLocaleDateString(
-                                        "en-US",
-                                        options
-                                      )}</span></li>
-                              <li class="list-group-item bg-warning bg-opacity-10">
-                                  <span>Last updated 
-                                      : </span><span>${updateDate.toLocaleDateString(
-                                        "en-US",
-                                        options
-                                      )}</span></li>
-                              <li class="list-group-item bg-danger bg-opacity-10">
-                                  <span>Auction
-                                      ends : </span><span>${endDate.toLocaleDateString(
-                                        "en-US",
-                                        options
-                                      )}</span></li>
-                              <li class="list-group-item bg-info bg-opacity-10">                                  
-                                      <span>Number of bids : 
-                                      ${listing._count.bids}</span>
-                              </li>
-                              <li class="list-group-item bg-success bg-opacity-25">
-                                ${
-                                  listing.bids.length > 0
-                                    ? `
-                                    <span>Highest bid :
-                                    <span class="fw-bold">${
-                                      listing.bids.at(-1).amount
-                                    }</span></span>
-                                   `
-                                    : ""
-                                }
-                              </li>
-                              <li class="list-group-item">
-                                  <form class="row">
-                                  <div class="row align-items-center">
-                                  <div class="col">
-                                    <label for="userBid" class="form-label mt-1">Your bid :
-                                    </label>
-                                  </div>
-                                  <div class="col">
-                                    <input type="number" class="form-control" id="userBid"
-                                      placeholder="0">
-                                  </div>
-                                  <div class="col">
-                                    <button type="submit" class="btn btn-primary"
-                                      id="bidBtn">Place
-                                      Bid</button>
-                                  </div>
-                                </div>
-                                  </form>
-                              </li>
-                          </ul>
-                          <div class="card mt-1 border text-center bg-info bg-opacity-10 rounded">
-                          <span class="mt-2 fw-bold ">Bid Timeline</span>                              
-                              <div class="container-fluid row row-cols-auto m-1 justify-content-center"
-                                  id="bidsContainer">
-                                  ${bidInfo}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div id="modalCarouselControls"
-      class="carousel slide"
-      data-bs-ride="carousel">
-      <div class="carousel-inner">
-          ${listing.media.map(
-            (image, index) => `<div
-              class="carousel-item ${index == 0 ? `active` : ``}">
-              <img src="${image}"
-                  class="card-img-top carouselImg px-1 rounded-3"
-                  alt="" />
-          </div>`
-          )}
-      </div>
-      <button class="carousel-control-prev"
-          type="button"
-          data-bs-target="#modalCarouselControls"
-          data-bs-slide="prev">
-          <span
-              class="carousel-control-prev-icon border border-dark"
-              aria-hidden="true"></span>
-          <span
-              class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next"
-          type="button"
-          data-bs-target="#modalCarouselControls"
-          data-bs-slide="next">
-          <span
-              class="carousel-control-next-icon border border-dark"
-              aria-hidden="true"></span>
-          <span
-              class="visually-hidden">Next</span>
-      </button>
-  </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </div>`;
+                  </div>`;
 }
 
 export function userNull() {
