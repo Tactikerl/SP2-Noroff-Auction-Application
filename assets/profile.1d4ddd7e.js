@@ -4,16 +4,16 @@ import {
   t as i,
   o as s,
   h as d,
-} from "./htmlconst.66b18a18.js";
-import { r as c } from "./renderListings.88047f1a.js";
-import { u as l } from "./logout.8d70a663.js";
-t || (window.location = "/login/index.html");
+} from "./htmlconst.3f9a2e96.js";
+import { r as c } from "./renderListings.a2339e10.js";
+import { u as l } from "./logout.e52ab6e3.js";
+t || (window.location = "../login/index.html");
 const m = (e, n) => {
   const r = document.getElementById("profileContainer");
   (r.innerHTML = s(e, n)),
     document.getElementById("avatarUrlBtn").addEventListener("click", u),
     l(),
-    c(e.listings);
+    c(e.listings, !0);
 };
 t && a(m, i, t);
 function u() {

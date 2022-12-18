@@ -4,7 +4,7 @@ function t() {
     localStorage.removeItem("usercredit"),
     localStorage.removeItem("userlistings"),
     localStorage.removeItem("userwins"),
-    (document.location = "/index.html");
+    (document.location = "../index.html");
 }
 function o() {
   const e = document.getElementById("logoutBtn");

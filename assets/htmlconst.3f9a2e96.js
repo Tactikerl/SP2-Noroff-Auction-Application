@@ -5,8 +5,8 @@
   new MutationObserver((I) => {
     for (const E of I)
       if (E.type === "childList")
-        for (const xe of E.addedNodes)
-          xe.tagName === "LINK" && xe.rel === "modulepreload" && j(xe);
+        for (const oe of E.addedNodes)
+          oe.tagName === "LINK" && oe.rel === "modulepreload" && j(oe);
   }).observe(document, { childList: !0, subtree: !0 });
   function $(I) {
     const E = {};
@@ -66,14 +66,14 @@ var Zn =
         const e = j(i);
         return e ? document.querySelector(e) : null;
       },
-      xe = (i) => {
+      oe = (i) => {
         i.dispatchEvent(new Event($));
       },
-      oe = (i) =>
+      re = (i) =>
         !(!i || typeof i != "object") &&
         (i.jquery !== void 0 && (i = i[0]), i.nodeType !== void 0),
-      de = (i) =>
-        oe(i)
+      ue = (i) =>
+        re(i)
           ? i.jquery
             ? i[0]
             : i
@@ -81,7 +81,7 @@ var Zn =
           ? document.querySelector(i)
           : null,
       Ee = (i) => {
-        if (!oe(i) || i.getClientRects().length === 0) return !1;
+        if (!re(i) || i.getClientRects().length === 0) return !1;
         const e =
             getComputedStyle(i).getPropertyValue("visibility") === "visible",
           t = i.closest("details:not([open])");
@@ -92,7 +92,7 @@ var Zn =
         }
         return e;
       },
-      ue = (i) =>
+      he = (i) =>
         !i ||
         i.nodeType !== Node.ELEMENT_NODE ||
         !!i.classList.contains("disabled") ||
@@ -142,11 +142,11 @@ var Zn =
               vt.push(e))
             : e();
       },
-      re = (i) => {
+      ae = (i) => {
         typeof i == "function" && i();
       },
       ti = (i, e, t = !0) => {
-        if (!t) return void re(i);
+        if (!t) return void ae(i);
         const s =
           ((r) => {
             if (!r) return 0;
@@ -162,11 +162,11 @@ var Zn =
           })(e) + 5;
         let n = !1;
         const o = ({ target: r }) => {
-          r === e && ((n = !0), e.removeEventListener($, o), re(i));
+          r === e && ((n = !0), e.removeEventListener($, o), ae(i));
         };
         e.addEventListener($, o),
           setTimeout(() => {
-            n || xe(e);
+            n || oe(e);
           }, s);
       },
       yt = (i, e, t, s) => {
@@ -376,11 +376,11 @@ var Zn =
         }
       return i;
     }
-    const he = new Map(),
+    const fe = new Map(),
       Et = {
         set(i, e, t) {
-          he.has(i) || he.set(i, new Map());
-          const s = he.get(i);
+          fe.has(i) || fe.set(i, new Map());
+          const s = fe.get(i);
           s.has(e) || s.size === 0
             ? s.set(e, t)
             : console.error(
@@ -389,11 +389,11 @@ var Zn =
                 }.`
               );
         },
-        get: (i, e) => (he.has(i) && he.get(i).get(e)) || null,
+        get: (i, e) => (fe.has(i) && fe.get(i).get(e)) || null,
         remove(i, e) {
-          if (!he.has(i)) return;
-          const t = he.get(i);
-          t.delete(e), t.size === 0 && he.delete(i);
+          if (!fe.has(i)) return;
+          const t = fe.get(i);
+          t.delete(e), t.size === 0 && fe.delete(i);
         },
       };
     function di(i) {
@@ -411,7 +411,7 @@ var Zn =
     function Tt(i) {
       return i.replace(/[A-Z]/g, (e) => `-${e.toLowerCase()}`);
     }
-    const ae = {
+    const le = {
       setDataAttribute(i, e, t) {
         i.setAttribute(`data-bs-${Tt(e)}`, t);
       },
@@ -457,11 +457,11 @@ var Zn =
         return e;
       }
       _mergeConfigObj(e, t) {
-        const s = oe(t) ? ae.getDataAttribute(t, "config") : {};
+        const s = re(t) ? le.getDataAttribute(t, "config") : {};
         return {
           ...this.constructor.Default,
           ...(typeof s == "object" ? s : {}),
-          ...(oe(t) ? ae.getDataAttributes(t) : {}),
+          ...(re(t) ? le.getDataAttributes(t) : {}),
           ...(typeof e == "object" ? e : {}),
         };
       }
@@ -469,7 +469,7 @@ var Zn =
         for (const n of Object.keys(t)) {
           const o = t[n],
             r = e[n],
-            a = oe(r)
+            a = re(r)
               ? "element"
               : (s = r) == null
               ? `${s}`
@@ -488,7 +488,7 @@ var Zn =
     class J extends He {
       constructor(e, t) {
         super(),
-          (e = de(e)) &&
+          (e = ue(e)) &&
             ((this._element = e),
             (this._config = this._getConfig(t)),
             Et.set(this._element, this.constructor.DATA_KEY, this));
@@ -510,7 +510,7 @@ var Zn =
         );
       }
       static getInstance(e) {
-        return Et.get(de(e), this.DATA_KEY);
+        return Et.get(ue(e), this.DATA_KEY);
       }
       static getOrCreateInstance(e, t = {}) {
         return (
@@ -535,7 +535,7 @@ var Zn =
         s = i.NAME;
       l.on(document, t, `[data-bs-dismiss="${s}"]`, function (n) {
         if (
-          (["A", "AREA"].includes(this.tagName) && n.preventDefault(), ue(this))
+          (["A", "AREA"].includes(this.tagName) && n.preventDefault(), he(this))
         )
           return;
         const o = E(this) || this.closest(`.${s}`);
@@ -635,7 +635,7 @@ var Zn =
           ]
             .map((t) => `${t}:not([tabindex^="-"])`)
             .join(",");
-          return this.find(e, i).filter((t) => !ue(t) && Ee(t));
+          return this.find(e, i).filter((t) => !he(t) && Ee(t));
         },
       },
       zs = { endCallback: null, leftCallback: null, rightCallback: null },
@@ -676,7 +676,7 @@ var Zn =
         this._eventIsPointerPenTouch(e) &&
           (this._deltaX = e.clientX - this._deltaX),
           this._handleSwipe(),
-          re(this._config.endCallback);
+          ae(this._config.endCallback);
       }
       _move(e) {
         this._deltaX =
@@ -690,7 +690,7 @@ var Zn =
         const t = e / this._deltaX;
         (this._deltaX = 0),
           t &&
-            re(t > 0 ? this._config.rightCallback : this._config.leftCallback);
+            ae(t > 0 ? this._config.rightCallback : this._config.leftCallback);
       }
       _initEvents() {
         this._supportPointerEvents
@@ -772,7 +772,7 @@ var Zn =
         this._slide(Te);
       }
       pause() {
-        this._isSliding && xe(this._element), this._clearInterval();
+        this._isSliding && oe(this._element), this._clearInterval();
       }
       cycle() {
         this._clearInterval(),
@@ -941,7 +941,7 @@ var Zn =
           s = this.getAttribute("data-bs-slide-to");
         return s
           ? (t.to(s), void t._maybeEnableCycle())
-          : ae.getDataAttribute(this, "slide") === "next"
+          : le.getDataAttribute(this, "slide") === "next"
           ? (t.next(), void t._maybeEnableCycle())
           : (t.prev(), void t._maybeEnableCycle());
       }
@@ -1053,7 +1053,7 @@ var Zn =
         return e.classList.contains(Ot);
       }
       _configAfterMerge(e) {
-        return (e.toggle = Boolean(e.toggle)), (e.parent = de(e.parent)), e;
+        return (e.toggle = Boolean(e.toggle)), (e.parent = ue(e.parent)), e;
       }
       _getDimension() {
         return this._element.classList.contains("collapse-horizontal")
@@ -1108,17 +1108,17 @@ var Zn =
       B = "left",
       it = "auto",
       Le = [H, q, z, B],
-      me = "start",
+      ge = "start",
       De = "end",
       fi = "clippingParents",
       Lt = "viewport",
       Ie = "popper",
       pi = "reference",
       Dt = Le.reduce(function (i, e) {
-        return i.concat([e + "-" + me, e + "-" + De]);
+        return i.concat([e + "-" + ge, e + "-" + De]);
       }, []),
       It = [].concat(Le, [it]).reduce(function (i, e) {
-        return i.concat([e, e + "-" + me, e + "-" + De]);
+        return i.concat([e, e + "-" + ge, e + "-" + De]);
       }, []),
       mi = "beforeRead",
       gi = "read",
@@ -1141,7 +1141,7 @@ var Zn =
       }
       return i;
     }
-    function ge(i) {
+    function _e(i) {
       return i instanceof X(i).Element || i instanceof Element;
     }
     function Y(i) {
@@ -1214,7 +1214,7 @@ var Zn =
     function ie(i) {
       return i.split("-")[0];
     }
-    var _e = Math.max,
+    var be = Math.max,
       st = Math.min,
       Se = Math.round;
     function Nt() {
@@ -1239,7 +1239,7 @@ var Zn =
         Y(i) &&
         ((n = (i.offsetWidth > 0 && Se(s.width) / i.offsetWidth) || 1),
         (o = (i.offsetHeight > 0 && Se(s.height) / i.offsetHeight) || 1));
-      var r = (ge(i) ? X(i) : window).visualViewport,
+      var r = (_e(i) ? X(i) : window).visualViewport,
         a = !Ti() && t,
         c = (s.left + (a && r ? r.offsetLeft : 0)) / n,
         u = (s.top + (a && r ? r.offsetTop : 0)) / o,
@@ -1278,35 +1278,35 @@ var Zn =
       }
       return !1;
     }
-    function le(i) {
+    function ce(i) {
       return X(i).getComputedStyle(i);
     }
     function Gs(i) {
       return ["table", "td", "th"].indexOf(te(i)) >= 0;
     }
-    function fe(i) {
+    function pe(i) {
       return (
-        (ge(i) ? i.ownerDocument : i.document) || window.document
+        (_e(i) ? i.ownerDocument : i.document) || window.document
       ).documentElement;
     }
     function nt(i) {
       return te(i) === "html"
         ? i
-        : i.assignedSlot || i.parentNode || (St(i) ? i.host : null) || fe(i);
+        : i.assignedSlot || i.parentNode || (St(i) ? i.host : null) || pe(i);
     }
     function Oi(i) {
-      return Y(i) && le(i).position !== "fixed" ? i.offsetParent : null;
+      return Y(i) && ce(i).position !== "fixed" ? i.offsetParent : null;
     }
     function We(i) {
-      for (var e = X(i), t = Oi(i); t && Gs(t) && le(t).position === "static"; )
+      for (var e = X(i), t = Oi(i); t && Gs(t) && ce(t).position === "static"; )
         t = Oi(t);
       return t &&
-        (te(t) === "html" || (te(t) === "body" && le(t).position === "static"))
+        (te(t) === "html" || (te(t) === "body" && ce(t).position === "static"))
         ? e
         : t ||
             (function (s) {
               var n = /firefox/i.test(Nt());
-              if (/Trident/i.test(Nt()) && Y(s) && le(s).position === "fixed")
+              if (/Trident/i.test(Nt()) && Y(s) && ce(s).position === "fixed")
                 return null;
               var o = nt(s);
               for (
@@ -1314,7 +1314,7 @@ var Zn =
                 Y(o) && ["html", "body"].indexOf(te(o)) < 0;
 
               ) {
-                var r = le(o);
+                var r = ce(o);
                 if (
                   r.transform !== "none" ||
                   r.perspective !== "none" ||
@@ -1334,7 +1334,7 @@ var Zn =
       return ["top", "bottom"].indexOf(i) >= 0 ? "x" : "y";
     }
     function qe(i, e, t) {
-      return _e(i, st(e, t));
+      return be(i, st(e, t));
     }
     function ki(i) {
       return Object.assign({}, { top: 0, right: 0, bottom: 0, left: 0 }, i);
@@ -1433,7 +1433,7 @@ var Zn =
           T = "clientHeight",
           k = "clientWidth";
         A === X(t) &&
-          le((A = fe(t))).position !== "static" &&
+          ce((A = pe(t))).position !== "static" &&
           a === "absolute" &&
           ((T = "scrollHeight"), (k = "scrollWidth")),
           (n === H || ((n === B || n === z) && o === De)) &&
@@ -1590,10 +1590,10 @@ var Zn =
       return { scrollLeft: e.pageXOffset, scrollTop: e.pageYOffset };
     }
     function Ft(i) {
-      return Pe(fe(i)).left + Bt(i).scrollLeft;
+      return Pe(pe(i)).left + Bt(i).scrollLeft;
     }
     function Rt(i) {
-      var e = le(i),
+      var e = ce(i),
         t = e.overflow,
         s = e.overflowX,
         n = e.overflowY;
@@ -1629,7 +1629,7 @@ var Zn =
         ? Wt(
             (function (s, n) {
               var o = X(s),
-                r = fe(s),
+                r = pe(s),
                 a = o.visualViewport,
                 c = r.clientWidth,
                 u = r.clientHeight,
@@ -1644,7 +1644,7 @@ var Zn =
               return { width: c, height: u, x: h + Ft(s), y: d };
             })(i, t)
           )
-        : ge(e)
+        : _e(e)
         ? (function (s, n) {
             var o = Pe(s, !1, n === "fixed");
             return (
@@ -1662,16 +1662,16 @@ var Zn =
         : Wt(
             (function (s) {
               var n,
-                o = fe(s),
+                o = pe(s),
                 r = Bt(s),
                 a = (n = s.ownerDocument) == null ? void 0 : n.body,
-                c = _e(
+                c = be(
                   o.scrollWidth,
                   o.clientWidth,
                   a ? a.scrollWidth : 0,
                   a ? a.clientWidth : 0
                 ),
-                u = _e(
+                u = be(
                   o.scrollHeight,
                   o.clientHeight,
                   a ? a.scrollHeight : 0,
@@ -1680,11 +1680,11 @@ var Zn =
                 h = -r.scrollLeft + Ft(s),
                 d = -r.scrollTop;
               return (
-                le(a || o).direction === "rtl" &&
-                  (h += _e(o.clientWidth, a ? a.clientWidth : 0) - c),
+                ce(a || o).direction === "rtl" &&
+                  (h += be(o.clientWidth, a ? a.clientWidth : 0) - c),
                 { width: c, height: u, x: h, y: d }
               );
-            })(fe(i))
+            })(pe(i))
           );
     }
     function ji(i) {
@@ -1716,7 +1716,7 @@ var Zn =
       if (u != null) {
         var h = u === "y" ? "height" : "width";
         switch (r) {
-          case me:
+          case ge:
             e[u] = e[u] - (t[h] / 2 - s[h] / 2);
             break;
           case De:
@@ -1752,13 +1752,13 @@ var Zn =
                 ? (function (L) {
                     var W = ze(nt(L)),
                       G =
-                        ["absolute", "fixed"].indexOf(le(L).position) >= 0 &&
+                        ["absolute", "fixed"].indexOf(ce(L).position) >= 0 &&
                         Y(L)
                           ? We(L)
                           : L;
-                    return ge(G)
-                      ? W.filter(function (pe) {
-                          return ge(pe) && Ci(pe, G) && te(pe) !== "body";
+                    return _e(G)
+                      ? W.filter(function (me) {
+                          return _e(me) && Ci(me, G) && te(me) !== "body";
                         })
                       : [];
                   })(F)
@@ -1768,10 +1768,10 @@ var Zn =
             P = ne.reduce(function (L, W) {
               var G = Ni(F, W, M);
               return (
-                (L.top = _e(G.top, L.top)),
+                (L.top = be(G.top, L.top)),
                 (L.right = st(G.right, L.right)),
                 (L.bottom = st(G.bottom, L.bottom)),
-                (L.left = _e(G.left, L.left)),
+                (L.left = be(G.left, L.left)),
                 L
               );
             }, Ni(F, Me, M));
@@ -1782,7 +1782,7 @@ var Zn =
             (P.y = P.top),
             P
           );
-        })(ge(x) ? x : x.contextElement || fe(i.elements.popper), c, h, r),
+        })(_e(x) ? x : x.contextElement || pe(i.elements.popper), c, h, r),
         A = Pe(i.elements.reference),
         T = ji({
           reference: A,
@@ -1904,7 +1904,7 @@ var Zn =
           ) {
             var S = w[C],
               U = ie(S),
-              ee = Ne(S) === me,
+              ee = Ne(S) === ge,
               F = [H, q].indexOf(U) >= 0,
               Q = F ? "width" : "height",
               R = je(e, {
@@ -1934,9 +1934,9 @@ var Zn =
             for (
               var Me = function (L) {
                   var W = w.find(function (G) {
-                    var pe = A.get(G);
-                    if (pe)
-                      return pe.slice(0, L).every(function (gt) {
+                    var me = A.get(G);
+                    if (me)
+                      return me.slice(0, L).every(function (gt) {
                         return gt;
                       });
                   });
@@ -2112,16 +2112,16 @@ var Zn =
                 ne = se + g[Q],
                 Me = se - g[R],
                 P = f ? -k[M] / 2 : 0,
-                L = D === me ? T[M] : k[M],
-                W = D === me ? -k[M] : -T[M],
+                L = D === ge ? T[M] : k[M],
+                W = D === ge ? -k[M] : -T[M],
                 G = e.elements.arrow,
-                pe = f && G ? jt(G) : { width: 0, height: 0 },
+                me = f && G ? jt(G) : { width: 0, height: 0 },
                 gt = e.modifiersData["arrow#persistent"]
                   ? e.modifiersData["arrow#persistent"].padding
                   : { top: 0, right: 0, bottom: 0, left: 0 },
                 Ts = gt[Q],
                 Cs = gt[R],
-                _t = qe(0, T[M], pe[M]),
+                _t = qe(0, T[M], me[M]),
                 Un = w
                   ? T[M] / 2 - P - _t - Ts - S.mainAxis
                   : L - _t - Ts - S.mainAxis,
@@ -2139,7 +2139,7 @@ var Zn =
                 ks = qe(
                   f ? st(ne, se + Un - Os - Kn) : ne,
                   se,
-                  f ? _e(Me, Xn) : Me
+                  f ? be(Me, Xn) : Me
                 );
               (A[x] = ks), (ee[x] = ks - se);
             }
@@ -2147,22 +2147,22 @@ var Zn =
               var Ls,
                 Yn = x === "x" ? H : B,
                 Qn = x === "x" ? q : z,
-                Ae = A[y],
+                xe = A[y],
                 bt = y === "y" ? "height" : "width",
-                Ds = Ae + g[Yn],
-                Is = Ae - g[Qn],
+                Ds = xe + g[Yn],
+                Is = xe - g[Qn],
                 Gt = [H, B].indexOf(O) !== -1,
                 Ss = (Ls = U == null ? void 0 : U[y]) != null ? Ls : 0,
-                Ps = Gt ? Ds : Ae - T[bt] - k[bt] - Ss + S.altAxis,
-                Ns = Gt ? Ae + T[bt] + k[bt] - Ss - S.altAxis : Is,
+                Ps = Gt ? Ds : xe - T[bt] - k[bt] - Ss + S.altAxis,
+                Ns = Gt ? xe + T[bt] + k[bt] - Ss - S.altAxis : Is,
                 js =
                   f && Gt
                     ? (function (Gn, Jn, Jt) {
                         var Ms = qe(Gn, Jn, Jt);
                         return Ms > Jt ? Jt : Ms;
-                      })(Ps, Ae, Ns)
-                    : qe(f ? Ps : Ds, Ae, f ? Ns : Is);
-              (A[y] = js), (ee[y] = js - Ae);
+                      })(Ps, xe, Ns)
+                    : qe(f ? Ps : Ds, xe, f ? Ns : Is);
+              (A[y] = js), (ee[y] = js - xe);
             }
             e.modifiersData[s] = ee;
           }
@@ -2182,7 +2182,7 @@ var Zn =
               m = Se(v.height) / d.offsetHeight || 1;
             return f !== 1 || m !== 1;
           })(e),
-        a = fe(e),
+        a = pe(e),
         c = Pe(i, r, t),
         u = { scrollLeft: 0, scrollTop: 0 },
         h = { x: 0, y: 0 };
@@ -2267,7 +2267,7 @@ var Zn =
               p(),
                 (d.options = Object.assign({}, o, d.options, O)),
                 (d.scrollParents = {
-                  reference: ge(r)
+                  reference: _e(r)
                     ? ze(r)
                     : r.contextElement
                     ? ze(r.contextElement)
@@ -2407,7 +2407,7 @@ var Zn =
             left: B,
             auto: it,
             basePlacements: Le,
-            start: me,
+            start: ge,
             end: De,
             clippingParents: fi,
             viewport: Lt,
@@ -2445,8 +2445,8 @@ var Zn =
       Ki = "click.bs.dropdown.data-api",
       Xi = "keydown.bs.dropdown.data-api",
       Ue = "show",
-      be = '[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)',
-      ln = `${be}.show`,
+      ve = '[data-bs-toggle="dropdown"]:not(.disabled):not(:disabled)',
+      ln = `${ve}.show`,
       lt = ".dropdown-menu",
       cn = V() ? "top-end" : "top-start",
       dn = V() ? "top-start" : "top-end",
@@ -2494,7 +2494,7 @@ var Zn =
         return this._isShown() ? this.hide() : this.show();
       }
       show() {
-        if (ue(this._element) || this._isShown()) return;
+        if (he(this._element) || this._isShown()) return;
         const e = { relatedTarget: this._element };
         if (!l.trigger(this._element, "show.bs.dropdown", e).defaultPrevented) {
           if (
@@ -2512,7 +2512,7 @@ var Zn =
         }
       }
       hide() {
-        if (ue(this._element) || !this._isShown()) return;
+        if (he(this._element) || !this._isShown()) return;
         const e = { relatedTarget: this._element };
         this._completeHide(e);
       }
@@ -2532,14 +2532,14 @@ var Zn =
             this._menu.classList.remove(Ue),
             this._element.classList.remove(Ue),
             this._element.setAttribute("aria-expanded", "false"),
-            ae.removeDataAttribute(this._menu, "popper"),
+            le.removeDataAttribute(this._menu, "popper"),
             l.trigger(this._element, "hidden.bs.dropdown", e);
         }
       }
       _getConfig(e) {
         if (
           typeof (e = super._getConfig(e)).reference == "object" &&
-          !oe(e.reference) &&
+          !re(e.reference) &&
           typeof e.reference.getBoundingClientRect != "function"
         )
           throw new TypeError(
@@ -2555,8 +2555,8 @@ var Zn =
         let e = this._element;
         this._config.reference === "parent"
           ? (e = this._parent)
-          : oe(this._config.reference)
-          ? (e = de(this._config.reference))
+          : re(this._config.reference)
+          ? (e = ue(this._config.reference))
           : typeof this._config.reference == "object" &&
             (e = this._config.reference);
         const t = this._getPopperConfig();
@@ -2601,7 +2601,7 @@ var Zn =
         };
         return (
           (this._inNavbar || this._config.display === "static") &&
-            (ae.setDataAttribute(this._menu, "popper", "static"),
+            (le.setDataAttribute(this._menu, "popper", "static"),
             (e.modifiers = [{ name: "applyStyles", enabled: !1 }])),
           {
             ...e,
@@ -2656,21 +2656,21 @@ var Zn =
           n = [an, Vi].includes(e.key);
         if ((!n && !s) || (t && !s)) return;
         e.preventDefault();
-        const o = this.matches(be)
+        const o = this.matches(ve)
             ? this
-            : b.prev(this, be)[0] ||
-              b.next(this, be)[0] ||
-              b.findOne(be, e.delegateTarget.parentNode),
+            : b.prev(this, ve)[0] ||
+              b.next(this, ve)[0] ||
+              b.findOne(ve, e.delegateTarget.parentNode),
           r = Z.getOrCreateInstance(o);
         if (n) return e.stopPropagation(), r.show(), void r._selectMenuItem(e);
         r._isShown() && (e.stopPropagation(), r.hide(), o.focus());
       }
     }
-    l.on(document, Xi, be, Z.dataApiKeydownHandler),
+    l.on(document, Xi, ve, Z.dataApiKeydownHandler),
       l.on(document, Xi, lt, Z.dataApiKeydownHandler),
       l.on(document, Ki, Z.clearMenus),
       l.on(document, "keyup.bs.dropdown.data-api", Z.clearMenus),
-      l.on(document, Ki, be, function (i) {
+      l.on(document, Ki, ve, function (i) {
         i.preventDefault(), Z.getOrCreateInstance(this).toggle();
       }),
       K(Z);
@@ -2718,18 +2718,18 @@ var Zn =
       }
       _saveInitialAttribute(e, t) {
         const s = e.style.getPropertyValue(t);
-        s && ae.setDataAttribute(e, t, s);
+        s && le.setDataAttribute(e, t, s);
       }
       _resetElementAttributes(e, t) {
         this._applyManipulationCallback(e, (s) => {
-          const n = ae.getDataAttribute(s, t);
+          const n = le.getDataAttribute(s, t);
           n !== null
-            ? (ae.removeDataAttribute(s, t), s.style.setProperty(t, n))
+            ? (le.removeDataAttribute(s, t), s.style.setProperty(t, n))
             : s.style.removeProperty(t);
         });
       }
       _applyManipulationCallback(e, t) {
-        if (oe(e)) t(e);
+        if (re(e)) t(e);
         else for (const s of b.find(e, this._element)) t(s);
       }
     }
@@ -2766,22 +2766,22 @@ var Zn =
         return "backdrop";
       }
       show(e) {
-        if (!this._config.isVisible) return void re(e);
+        if (!this._config.isVisible) return void ae(e);
         this._append();
         const t = this._getElement();
         this._config.isAnimated && $e(t),
           t.classList.add(Ji),
           this._emulateAnimation(() => {
-            re(e);
+            ae(e);
           });
       }
       hide(e) {
         this._config.isVisible
           ? (this._getElement().classList.remove(Ji),
             this._emulateAnimation(() => {
-              this.dispose(), re(e);
+              this.dispose(), ae(e);
             }))
-          : re(e);
+          : ae(e);
       }
       dispose() {
         this._isAppended &&
@@ -2799,14 +2799,14 @@ var Zn =
         return this._element;
       }
       _configAfterMerge(e) {
-        return (e.rootElement = de(e.rootElement)), e;
+        return (e.rootElement = ue(e.rootElement)), e;
       }
       _append() {
         if (this._isAppended) return;
         const e = this._getElement();
         this._config.rootElement.append(e),
           l.on(e, Zi, () => {
-            re(this._config.clickCallback);
+            ae(this._config.clickCallback);
           }),
           (this._isAppended = !0);
       }
@@ -2874,7 +2874,7 @@ var Zn =
         focus: "boolean",
         keyboard: "boolean",
       };
-    class ve extends J {
+    class ye extends J {
       constructor(e, t) {
         super(e, t),
           (this._dialog = b.findOne(".modal-dialog", this._element)),
@@ -3036,7 +3036,7 @@ var Zn =
       }
       static jQueryInterface(e, t) {
         return this.each(function () {
-          const s = ve.getOrCreateInstance(this, e);
+          const s = ye.getOrCreateInstance(this, e);
           if (typeof e == "string") {
             if (s[e] === void 0) throw new TypeError(`No method named "${e}"`);
             s[e](t);
@@ -3058,11 +3058,11 @@ var Zn =
               });
           });
         const t = b.findOne(".modal.show");
-        t && ve.getInstance(t).hide(), ve.getOrCreateInstance(e).toggle(this);
+        t && ye.getInstance(t).hide(), ye.getOrCreateInstance(e).toggle(this);
       }
     ),
-      Qe(ve),
-      K(ve);
+      Qe(ye),
+      K(ye);
     const ls = "show",
       cs = "showing",
       ds = "hiding",
@@ -3075,7 +3075,7 @@ var Zn =
         keyboard: "boolean",
         scroll: "boolean",
       };
-    class ce extends J {
+    class de extends J {
       constructor(e, t) {
         super(e, t),
           (this._isShown = !1),
@@ -3171,7 +3171,7 @@ var Zn =
       }
       static jQueryInterface(e) {
         return this.each(function () {
-          const t = ce.getOrCreateInstance(this, e);
+          const t = de.getOrCreateInstance(this, e);
           if (typeof e == "string") {
             if (t[e] === void 0 || e.startsWith("_") || e === "constructor")
               throw new TypeError(`No method named "${e}"`);
@@ -3187,27 +3187,27 @@ var Zn =
       function (i) {
         const e = E(this);
         if (
-          (["A", "AREA"].includes(this.tagName) && i.preventDefault(), ue(this))
+          (["A", "AREA"].includes(this.tagName) && i.preventDefault(), he(this))
         )
           return;
         l.one(e, fs, () => {
           Ee(this) && this.focus();
         });
         const t = b.findOne(us);
-        t && t !== e && ce.getInstance(t).hide(),
-          ce.getOrCreateInstance(e).toggle(this);
+        t && t !== e && de.getInstance(t).hide(),
+          de.getOrCreateInstance(e).toggle(this);
       }
     ),
       l.on(window, "load.bs.offcanvas.data-api", () => {
-        for (const i of b.find(us)) ce.getOrCreateInstance(i).show();
+        for (const i of b.find(us)) de.getOrCreateInstance(i).show();
       }),
       l.on(window, "resize.bs.offcanvas", () => {
         for (const i of b.find("[aria-modal][class*=show][class*=offcanvas-]"))
           getComputedStyle(i).position !== "fixed" &&
-            ce.getOrCreateInstance(i).hide();
+            de.getOrCreateInstance(i).hide();
       }),
-      Qe(ce),
-      K(ce);
+      Qe(de),
+      K(de);
     const Tn = new Set([
         "background",
         "cite",
@@ -3329,8 +3329,8 @@ var Zn =
         const n = b.findOne(s, e);
         n &&
           ((t = this._resolvePossibleFunction(t))
-            ? oe(t)
-              ? this._putElementInTemplate(de(t), n)
+            ? re(t)
+              ? this._putElementInTemplate(ue(t), n)
               : this._config.html
               ? (n.innerHTML = this._maybeSanitize(t))
               : (n.textContent = t)
@@ -3418,7 +3418,7 @@ var Zn =
         title: "(string|element|function)",
         trigger: "string",
       };
-    class ye extends J {
+    class we extends J {
       constructor(e, t) {
         if (zi === void 0)
           throw new TypeError(
@@ -3731,7 +3731,7 @@ var Zn =
         return Object.values(this._activeTrigger).includes(!0);
       }
       _getConfig(e) {
-        const t = ae.getDataAttributes(this._element);
+        const t = le.getDataAttributes(this._element);
         for (const s of Object.keys(t)) Pn.has(s) && delete t[s];
         return (
           (e = { ...t, ...(typeof e == "object" && e ? e : {}) }),
@@ -3743,7 +3743,7 @@ var Zn =
       }
       _configAfterMerge(e) {
         return (
-          (e.container = e.container === !1 ? document.body : de(e.container)),
+          (e.container = e.container === !1 ? document.body : ue(e.container)),
           typeof e.delay == "number" &&
             (e.delay = { show: e.delay, hide: e.delay }),
           typeof e.title == "number" && (e.title = e.title.toString()),
@@ -3763,7 +3763,7 @@ var Zn =
       }
       static jQueryInterface(e) {
         return this.each(function () {
-          const t = ye.getOrCreateInstance(this, e);
+          const t = we.getOrCreateInstance(this, e);
           if (typeof e == "string") {
             if (t[e] === void 0) throw new TypeError(`No method named "${e}"`);
             t[e]();
@@ -3771,9 +3771,9 @@ var Zn =
         });
       }
     }
-    K(ye);
+    K(we);
     const $n = {
-        ...ye.Default,
+        ...we.Default,
         content: "",
         offset: [0, 8],
         placement: "right",
@@ -3781,8 +3781,8 @@ var Zn =
           '<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
         trigger: "click",
       },
-      Hn = { ...ye.DefaultType, content: "(null|string|element|function)" };
-    class ht extends ye {
+      Hn = { ...we.DefaultType, content: "(null|string|element|function)" };
+    class ht extends we {
       static get Default() {
         return $n;
       }
@@ -3872,7 +3872,7 @@ var Zn =
       }
       _configAfterMerge(e) {
         return (
-          (e.target = de(e.target) || document.body),
+          (e.target = ue(e.target) || document.body),
           (e.rootMargin = e.offset ? `${e.offset}px 0px -30%` : e.rootMargin),
           typeof e.threshold == "string" &&
             (e.threshold = e.threshold
@@ -3929,7 +3929,7 @@ var Zn =
         (this._targetLinks = new Map()), (this._observableSections = new Map());
         const e = b.find(vs, this._config.target);
         for (const t of e) {
-          if (!t.hash || ue(t)) continue;
+          if (!t.hash || he(t)) continue;
           const s = b.findOne(t.hash, this._element);
           Ee(s) &&
             (this._targetLinks.set(t.hash, t),
@@ -3990,7 +3990,7 @@ var Zn =
       xs =
         '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]',
       Yt = `.nav-link:not(.dropdown-toggle), .list-group-item:not(.dropdown-toggle), [role="tab"]:not(.dropdown-toggle), ${xs}`;
-    class we extends J {
+    class Ae extends J {
       constructor(e) {
         super(e),
           (this._parent = this._element.closest(
@@ -4052,12 +4052,12 @@ var Zn =
         e.stopPropagation(), e.preventDefault();
         const t = [ys, ws].includes(e.key),
           s = yt(
-            this._getChildren().filter((n) => !ue(n)),
+            this._getChildren().filter((n) => !he(n)),
             e.target,
             t,
             !0
           );
-        s && (s.focus({ preventScroll: !0 }), we.getOrCreateInstance(s).show());
+        s && (s.focus({ preventScroll: !0 }), Ae.getOrCreateInstance(s).show());
       }
       _getChildren() {
         return b.find(Yt, this._parent);
@@ -4111,7 +4111,7 @@ var Zn =
       }
       static jQueryInterface(e) {
         return this.each(function () {
-          const t = we.getOrCreateInstance(this);
+          const t = Ae.getOrCreateInstance(this);
           if (typeof e == "string") {
             if (t[e] === void 0 || e.startsWith("_") || e === "constructor")
               throw new TypeError(`No method named "${e}"`);
@@ -4122,15 +4122,15 @@ var Zn =
     }
     l.on(document, "click.bs.tab", xs, function (i) {
       ["A", "AREA"].includes(this.tagName) && i.preventDefault(),
-        ue(this) || we.getOrCreateInstance(this).show();
+        he(this) || Ae.getOrCreateInstance(this).show();
     }),
       l.on(window, "load.bs.tab", () => {
         for (const i of b.find(
           '.active[data-bs-toggle="tab"], .active[data-bs-toggle="pill"], .active[data-bs-toggle="list"]'
         ))
-          we.getOrCreateInstance(i);
+          Ae.getOrCreateInstance(i);
       }),
-      K(we);
+      K(Ae);
     const Es = "hide",
       pt = "show",
       mt = "showing",
@@ -4252,13 +4252,13 @@ var Zn =
         Carousel: Oe,
         Collapse: ke,
         Dropdown: Z,
-        Modal: ve,
-        Offcanvas: ce,
+        Modal: ye,
+        Offcanvas: de,
         Popover: ht,
         ScrollSpy: Ke,
-        Tab: we,
+        Tab: Ae,
         Toast: Xe,
-        Tooltip: ye,
+        Tooltip: we,
       }
     );
   });
@@ -4538,11 +4538,13 @@ function Eo(_, N) {
               id="logoutBtn">Logout</button>
           </li>`;
 }
-function To(_, N, $, j, I, E) {
+function To(_, N, $, j, I, E, oe) {
   return `  
                 <div class="col">
                     <div class="card shadow-sm">
-                        <a href="/listing/index.html?listings=${_.id}"><img
+                        <a href="${
+                          oe ? "." : ""
+                        }./listing/index.html?listings=${_.id}"><img
                                 src="${_.media[0]}"
                                 class="img-fluid img-thumbnail imgForm"
                                 alt="..."></a>                        
@@ -4569,7 +4571,9 @@ function To(_, N, $, j, I, E) {
                             <div
                                 class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="/viewListing.html?listings=${_.id}"
+                                    <a href="${
+                                      oe ? "." : ""
+                                    }./listing/index.html?listings=${_.id}"
                                         class="card-link"><button
                                             type="button"
                                             class="btn btn-sm btn-outline-secondary">View</button></a>
@@ -4783,7 +4787,7 @@ function Oo() {
             account by pressing the button
             underneath.</p>
           <div class="">
-            <a href="/login/index.html"><button
+            <a href="./login/index.html"><button
                 class="btn btn-primary"
                 id="profileBtn">Login/Register</button></a>
           </div>
