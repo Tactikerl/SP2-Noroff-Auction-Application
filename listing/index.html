@@ -2,15 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <link rel="stylesheet"
     href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="./css/styling.css" /> -->
-    <!-- <script defer
+  <link rel="stylesheet" href="./css/styling.css" />
+  <script defer
     src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auction House Listings</title>
+    <title>Auction House Listing</title>
   </head>
-  <body>
+  <body class="bg-light">
     <nav class="navbar navbar-expand-lg bg-info">
       <div class="container-fluid">
         <a class="navbar-brand" href="/index.html">The Auction House</a>
@@ -28,47 +29,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/profile/index.html">Profile</a>
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                >Listings</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/create/index.html">Create Listing</a>
+              <a class="nav-link" href="#">Profile</a>
             </li>
           </ul>
           <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navProfile"></ul>
-          <form class="d-flex" role="search" id="searchForm">
-            <input
-              required
-              minlength="2"
-              name="term"
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              id="searchInput"
-            />
-          </form>
         </div>
       </div>
     </nav>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div id="userNav" class="row"></div>
-      </div>
-    </div>
-    <div class="album bg-light">
-      <div class="container">
-        <div
-          id="listingsContainer"
-          class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
-        ></div>
-      </div>
-    </div>
-    <script defer type="module" src="./js/index.js"></script>
+    <div id="userNav" class="pt-3"></div>
+    <section id="listingContainer"></section>
+    <script defer type="module" src="../js/listing.js"></script>
     <!-- <script defer type="module"
-    src="/js/index/listings.js"></script>
+    src="/js/index/viewListing.js"></script>
   <script defer type="module"
-    src="/js/index/shortprofile.js"></script>
-  <script defer type="module"
-    src="/js/api/auth/logout.js"></script> -->
+    src="/js/index/shortprofile.js"></script> -->
   </body>
 </html>

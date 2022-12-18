@@ -3,17 +3,24 @@ import { profileFetch } from "../api/api.js";
 
 import { token, userName, myHeaders } from "../tools/utils.js";
 import { renderListings } from "../tools/renderListings.js";
+import { userCheck } from "../api/auth/logout.js";
 
+if (!userName) {
+  window.location = "/login/index.html";
+}
 const renderProfile = (profile, userName) => {
   const profileContainer = document.getElementById("profileContainer");
   profileContainer.innerHTML = renderProfileHTML(profile, userName);
   document
     .getElementById("avatarUrlBtn")
     .addEventListener("click", changeAvatarURL);
+  userCheck();
   renderListings(profile.listings);
 };
 
-profileFetch(renderProfile, token, userName);
+if (userName) {
+  profileFetch(renderProfile, token, userName);
+}
 
 function changeAvatarURL() {
   const newAvatarURL = document.getElementById("newAvatarURL").value;

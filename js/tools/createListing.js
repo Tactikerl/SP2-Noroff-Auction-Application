@@ -4,7 +4,7 @@ import { API_AUCTION_URL, AUCTION_POST_LISTING } from "../api/api.js";
 import { locationProfileCheck } from "../index/shortprofile.js";
 
 if (!userName) {
-  window.location = "./login.html";
+  window.location = "/login/index.html";
 }
 
 const formContainer = document.getElementById("createListing");
@@ -32,8 +32,14 @@ function createListing(event) {
   if (!token) {
     return alert("You are not logged inn, please log in to create listings");
   }
-  if (!title || !description || !endsAt || !media) {
+  if (!title || !description || !endsAt) {
     return alert("Please fill inn the required fields for the listing.");
+  }
+
+  let images = [];
+
+  if (media) {
+    images = media.split(",");
   }
 
   const listingData = JSON.stringify({
@@ -41,7 +47,7 @@ function createListing(event) {
     description: description,
     endsAt: endsAt,
     tags: [tags],
-    media: [media],
+    media: images,
   });
   const requestOptions = {
     method: "POST",
@@ -53,7 +59,7 @@ function createListing(event) {
     .then((response) => response.json())
     .then(
       (newListing) =>
-        (document.location = `/viewListing.html?listings=${newListing.id}`)
+        (document.location = `/listing/index.html?listings=${newListing.id}`)
     );
 }
 

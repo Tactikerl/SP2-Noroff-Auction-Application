@@ -18,7 +18,7 @@ import {
 import { locationProfileCheck } from "./shortprofile.js";
 
 if (!userName) {
-  window.location = "./login.html";
+  window.location = "/login/index.html";
 }
 
 const urlSearchParams = new URLSearchParams(window.location.search);

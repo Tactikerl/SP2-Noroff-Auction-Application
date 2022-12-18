@@ -265,7 +265,7 @@ export function indexListingHTML(
   return `  
                 <div class="col">
                     <div class="card shadow-sm">
-                        <a href="/viewListing.html?listings=${
+                        <a href="/listing/index.html?listings=${
                           getListings.id
                         }"><img
                                 src="${getListings.media[0]}"
@@ -522,7 +522,7 @@ export function userNull() {
             account by pressing the button
             underneath.</p>
           <div class="">
-            <a href="/login.html"><button
+            <a href="/login/index.html"><button
                 class="btn btn-primary"
                 id="profileBtn">Login/Register</button></a>
           </div>
