@@ -1,4 +1,4 @@
-function t() {
+function o() {
   localStorage.removeItem("token"),
     localStorage.removeItem("username"),
     localStorage.removeItem("usercredit"),
@@ -7,8 +7,8 @@ function t() {
   const e = document.querySelector(".navbar-brand").href;
   document.location = e;
 }
-function r(e) {
-  const o = document.getElementById("logoutBtn");
-  o && o.addEventListener("click", t);
+function t() {
+  const e = document.getElementById("logoutBtn");
+  e && e.addEventListener("click", o);
 }
-export { r as u };
+export { t as u };

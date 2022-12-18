@@ -4346,7 +4346,7 @@ const bo = new RegExp(/[^\s]+(.*?).(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/),
           <label for="newUserEmail"
               class="form-label">Email</label>
           <input type="email" class="form-control"
-              id="newUserEmail">
+              id="newUserEmail" pattern="^[w-.]+@(stud.)?noroff.no$">
       </div>
       <div class="">
           <label for="userPassword"

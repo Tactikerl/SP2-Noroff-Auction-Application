@@ -38,11 +38,11 @@ export const registerHTML = `
           <label for="newUserEmail"
               class="form-label">Email</label>
           <input type="email" class="form-control"
-              id="newUserEmail">
+              id="newUserEmail" >
       </div>
       <div class="">
           <label for="userPassword"
-              class="form-label">Password (Case sensitive)</label>
+              class="form-label">Password (8 characters, Case sensitive)</label>
           <input type="password" class="form-control"
               id="newUserPassword">
       </div>

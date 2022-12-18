@@ -62,6 +62,10 @@ export function registerUser() {
     .value.toLowerCase();
   const newUserAvatar = document.getElementById("newUserAvatar").value;
   const newUserPassword = document.getElementById("newUserPassword").value;
+  if (!newUserEmail.endsWith("@stud.noroff.no")) {
+    alert("Wrong email format");
+    return;
+  }
   const regData = JSON.stringify({
     name: newUserName,
     email: newUserEmail,
@@ -75,7 +79,11 @@ export function registerUser() {
   };
   fetch(`${API_AUCTION_URL}${AUCTION_REGISTER}`, regOptions)
     .then((response) => response.json())
-    .then(() => {
+    .then((response) => {
+      if (response.errors) {
+        alert(response.errors[0].message);
+        return;
+      }
       login(newUserEmail, newUserPassword);
     });
 }
