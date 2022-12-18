@@ -26,20 +26,20 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://127.0.0.1:5173/SP2-Noroff-Auction-Application/](http://127.0.0.1:5173/SP2-Noroff-Auction-Application/) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.
 
 
 ### `npm run build`
 
-Builds the app for production to the `dist` folder.\
+Builds the app for production to the `dist` folder.
 
 
 ### `npm run preview`
 
-Runs the buildt version of the app in preview mode.\
+Runs the buildt version of the app in preview mode.
 
 
 ## Authors
