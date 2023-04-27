@@ -8,7 +8,7 @@ Application for web based auction house.
 
 
 This application is developed to emulate a fictional auction house.
-Users can register with a @stud.noroff email address to create listings with fictional items and bid on listings from other users.
+Users can register with a ## @stud.noroff email address to create listings with fictional items and bid on listings from other users.
 Registered users can also check their profile to see acumulated credits, how many listings they have made and how many auctions they have won.
 non registered users may browse the listings front page and search through them, but have to log in or register an account to access the full app.
 
