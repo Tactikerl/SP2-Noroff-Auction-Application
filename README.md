@@ -12,6 +12,9 @@ Users can register with a **@stud.noroff** email address to create listings with
 Registered users can also check their profile to see acumulated credits, how many listings they have made and how many auctions they have won.
 non registered users may browse the listings front page and search through them, but have to log in or register an account to access the full app.
 
+**NB** 
+This page is based on a live API that is constantly improved and altered by the teachers of Noroff, so some functionality may have changed since the deployment of this Course Assignment. 
+
 ## Getting Started
 
 ### Dependencies
