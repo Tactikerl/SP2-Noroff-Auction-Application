@@ -11,7 +11,7 @@ export const loginHTML = `
                   id="userEmail">
           </div>
           <div class="">
-              <label for="userPassword"
+              <label for="userPassword" 
                   class="form-label">Password</label>
               <input type="password" class="form-control"
                   id="userPassword">
